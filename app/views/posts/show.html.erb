@@ -1,34 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><%= @post.title %></div>
+  <div class="panel-body">
+    <p><%= @post.content %></p>
+  </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+  <!-- Table -->
+  <table class="table">
+	  <tr class="info">
+	  	<th>Создал: <%= link_to @post.user.email %>	</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	    <th style='text-align: right;'><%= link_to 'Изменить', edit_post_path(@post) %> | <%= link_to "Удалить", post_path(@post), method: :delete %></th>
+	  </tr>
+	  <% @post.comments.each do |c| %>
+	  <tr>
+	  	<td><b><%= c.user.email %></b> написал:<br />&nbsp&nbsp&nbsp<%= c.content %></td>
+	  	<td></td>
+	  	<td></td>
+	  	<td></td>
+	    <td></td>
+	    <td style='text-align: right;'><br /><%= link_to 'Изменить', edit_post_comment_path(c) %> | <%= link_to "Удалить", post_comment_path(c), method: :delete %></td>
+	  </tr>
+	  <% end %>
+	</table>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+	<%= form_for [@post, @post.comments.build] do |f| %>
 
-<div class='container'>
-	<h1>Comments: </h1>
-
-	<% @post.comments.each do |c| %>
-		<p><%= c.content %></p>
-		<%= c.user.email %>
-	<% end %>
-
-		<%= form_for [@post, @post.comments.build] do |f| %>
-
-	  <div class="field">
+		  <div class="field">
 	    <%= f.label :content %>
 	    <%= f.text_field :content %>
 	  </div>
@@ -37,5 +42,3 @@
 	    <%= f.submit %>
 	  </div>
 	<% end %>
-
-</div>
