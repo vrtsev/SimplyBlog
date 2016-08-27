@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice", style='text-align: center;'><%= notice %></p>
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -31,14 +31,16 @@
 </div>
 
 
-	<%= form_for [@post, @post.comments.build] do |f| %>
 
-		  <div class="field">
-	    <%= f.label :content %>
-	    <%= f.text_field :content %>
-	  </div>
+<h2>Написать комментарий: </h2>
+<br />
+<%= form_for [@post, @post.comments.build] do |f| %>
+  <div class="field">
+    <%= f.text_field :content %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit "Отправить" %>
+  </div>
+<% end %>
 
-	  <div class="actions">
-	    <%= f.submit %>
-	  </div>
-	<% end %>

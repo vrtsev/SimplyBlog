@@ -22,11 +22,24 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:comment_id])
     @comment.destroy
+
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Комментарий был удален' }
+      format.html { redirect_to @post, notice: 'Комментарий был удален' }
       format.json { head :no_content }
     end
   end
 
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def comment_params
+      params.require(:comment).permit(:content, :post_id, :user_id)
+    end
 end
