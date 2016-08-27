@@ -21,4 +21,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to comments_url, notice: 'Комментарий был удален' }
+      format.json { head :no_content }
+    end
+  end
+
 end

@@ -1,31 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td><%= post.content %></td>
-        <td><%= post.user_id %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<% @posts.each do |post| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= link_to post.title, post_path(post) %></h2>
+  </div>
+  <div class="panel-body">
+    <%= post.content %>
+  </div>
+<div class="panel-footer"><%= link_to "Удалить", post_path(post), method: :delete %></div>
+</div>
+<% end %>
