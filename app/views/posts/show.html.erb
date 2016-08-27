@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+<div class='container'>
+	<h1>Comments: </h1>
+
+	<% @post.comments.each do |c| %>
+		<p><%= c.content %></p>
+		<%= c.user.email %>
+	<% end %>
+
+		<%= form_for [@post, @post.comments.build] do |f| %>
+
+	  <div class="field">
+	    <%= f.label :content %>
+	    <%= f.text_field :content %>
+	  </div>
+
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	<% end %>
+
+</div>
