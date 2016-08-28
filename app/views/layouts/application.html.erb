@@ -22,9 +22,6 @@
 
       <% if user_signed_in? %>
         <%= link_to "Создать пост", new_post_path, class: "btn btn-default navbar-btn" %>
-      <% elsif user_signed_in? && current_user.admin %>
-        <%= link_to "Создать пост", new_post_path, class: "btn btn-default navbar-btn" %>
-        
       <% end %>
     </div>
       <ul class="nav navbar-nav navbar-right">
