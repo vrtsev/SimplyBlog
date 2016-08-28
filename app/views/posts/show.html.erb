@@ -10,7 +10,7 @@
   <!-- Table -->
   <table class="table">
 	  <tr class="info">
-	  	<th>Создал: <%= link_to @post.user.email %>	</th>
+	  	<th>Создал: <%= link_to @post.user.email %>, <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></th>
 	    <th></th>
 	    <th></th>
 	    <th></th>

@@ -8,6 +8,7 @@
   <div class="panel-body">
     <%= post.content %>
   </div>
-<div class="panel-footer"><%= link_to "Удалить", post_path(post), method: :delete %></div>
+<div class="panel-footer"><%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span>&nbsp&nbsp&nbsp  <%= post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></div>
+
 </div>
 <% end %>

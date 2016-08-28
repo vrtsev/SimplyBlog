@@ -21,7 +21,7 @@
     <%= f.text_area :content %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-primary' %>
+  
 <% end %>
+
