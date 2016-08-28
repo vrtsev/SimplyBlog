@@ -8,7 +8,7 @@
   <div class="panel-body">
     <%= post.content %>
   </div>
-<div class="panel-footer"> от <%= link_to post.user.email %>&nbsp&nbsp&nbsp  <%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span></div>
+<div class="panel-footer"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= link_to post.user.email %>&nbsp&nbsp&nbsp   <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span></div>
 
 </div>
 <% end %>

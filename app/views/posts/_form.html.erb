@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
+  <div class="field" >
+    <h3>Заголовок</h3>
     <%= f.text_field :title %>
   </div>
 
   <div class="field">
-    <%= f.label :content %>
+    <h3>Сообщение</h3>
     <%= f.text_area :content %>
   </div>
-
-  <%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-primary' %>
+  <br />
+  <p class='btn btn-default'><%= link_to 'Назад', posts_path %></p>   <%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-primary' %>
   
 <% end %>
 

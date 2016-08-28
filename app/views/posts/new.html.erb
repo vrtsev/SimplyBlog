@@ -1,5 +1,8 @@
-<h1>Новая запись</h1>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Создать запись</div>
+  <div class="panel-body">
+    <p><%= render 'form', post: @post %></p>
+  </div>
 
-<%= render 'form', post: @post %>
-
-<p class='btn btn-default'><%= link_to 'Back', posts_path %></p>
+</div>
