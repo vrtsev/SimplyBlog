@@ -16,7 +16,16 @@
 	    <th></th>
 	    <th></th>
 		  <% if user_signed_in? && current_user.admin %>
-		    <th style='text-align: right;'><%= link_to 'Изменить', edit_post_path(@post) %> | <%= link_to "Удалить", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" } %></th>
+		    <th style='text-align: right;'><div class="btn-group">
+  <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Действия <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'Изменить', edit_post_path(@post) %></li>
+    <li role="separator" class="divider"></li>
+    <li><%= link_to "Удалить", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %></li>
+  </ul>
+</div></th>
 			<% else %>
 				<th></th>
 			<% end %>
@@ -29,7 +38,7 @@
 		  	<td></td>
 		    <td></td>
 			  <% if user_signed_in? && current_user.admin %>
-			    <td style='text-align: right;'><br /><%= link_to 'Изменить', edit_post_comment_path(@post, c) %> | <%= link_to "Удалить", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" } %></td>
+			    <td style='text-align: right;'><br /><%= link_to 'Изменить', edit_post_comment_path(@post, c), class: 'btn btn-warning btn-xs' %>  <%= link_to "Удалить", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %></td>
 				<% else %>
 					<td></td>
 				<% end %>
@@ -39,4 +48,6 @@
 </div>
 
 
-<%= render partial: 'posts/comment_form' %>
+<% if @mode == 'show' %>                             
+	<%= render partial: 'comments/new_form' %>                             
+<% end %>   

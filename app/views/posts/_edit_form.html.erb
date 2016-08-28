@@ -21,7 +21,7 @@
     <%= f.text_area :content %>
   </div>
   <br />
-  <p class='btn btn-default'><%= link_to 'Назад', posts_path %></p>   <%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-primary' %>
+  <p class='btn btn-default'><%= link_to 'Назад', posts_path %></p>   <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-primary' %>
   
 <% end %>
 
