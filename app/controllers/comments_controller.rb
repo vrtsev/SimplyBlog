@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
 
-  require 'pry'
-
   skip_before_action :verify_authenticity_token
 
 	def new
