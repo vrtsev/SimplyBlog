@@ -10,11 +10,7 @@
   <!-- Table -->
   <table class="table">
 	  <tr class="info">
-	  	<th><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to @post.user.email %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
+	  	<th style="width: 75%"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to @post.user.email %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></th>
 		  <% if user_signed_in? && current_user.admin %>
 		    <th style='text-align: right;'><div class="btn-group">
   <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,10 +29,6 @@
 		  <% @post.comments.each do |c| %>
 		  <tr>
 		  	<td>&nbsp<b><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= c.user.email %></b> написал:&nbsp&nbsp&nbsp<div class="well well-sm"><%= c.content %></td></div>
-		  	<td></td>
-		  	<td></td>
-		  	<td></td>
-		    <td></td>
 			  <% if user_signed_in? && current_user.admin %>
 			    <td style='text-align: right;'><br /><%= link_to 'Изменить', edit_post_comment_path(@post, c), class: 'btn btn-warning btn-xs' %>  <%= link_to "Удалить", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %></td>
 				<% else %>

@@ -50,9 +50,30 @@
    </div>
   </nav>
 
-	<div class="container">
-	  <body>
-	    <%= yield %>
-	  </body>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3" style="padding: 4%">
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation" class="active"><a href="/">Домой</a></li>
+          <li role="presentation"><a href="#">Профиль</a></li>
+          <li role="presentation"><a href="#">Публикации</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-7" style="padding: 35px;">
+        <body>
+          <%= yield %>
+        </body>
+      </div>
+
+      <div class="col-md-2" style="padding: 4px">
+      </div>
+
+    </div>
+  </div>
+
+
+
 	</div>
 </html>

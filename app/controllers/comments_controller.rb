@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
 
+  require 'pry'
+
+  skip_before_action :verify_authenticity_token
+
 	def new
 		@comment = Comment.new
 	end
@@ -7,6 +11,7 @@ class CommentsController < ApplicationController
   def edit
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
+    update
   end
 
 	def create
