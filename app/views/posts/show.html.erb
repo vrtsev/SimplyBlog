@@ -1,4 +1,4 @@
-<p id="notice", style='text-align: center; color: green;'><%= notice %></p>
+<p id="notice", style='text-align: center; color: green;' role="alert"><%= notice %></p>
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -12,16 +12,11 @@
 	  <tr class="info">
 	  	<th style="width: 75%"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to @post.user.email %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></th>
 		  <% if user_signed_in? && current_user.admin %>
-		    <th style='text-align: right;'><div class="btn-group">
-  <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Действия <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><%= link_to 'Изменить', edit_post_path(@post) %></li>
-    <li role="separator" class="divider"></li>
-    <li><%= link_to "Удалить", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %></li>
-  </ul>
-</div></th>
+		    <th style='text-align: right;'>
+
+			    	<%= link_to 'Изменить', edit_post_path(@post) , class: 'btn btn-warning btn-xs' %>  <%= link_to "Удалить", post_path(@post) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %>
+
+			</th>
 			<% else %>
 				<th></th>
 			<% end %>
@@ -30,7 +25,20 @@
 		  <tr>
 		  	<td>&nbsp<b><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= c.user.email %></b> написал:&nbsp&nbsp&nbsp<div class="well well-sm"><%= c.content %></td></div>
 			  <% if user_signed_in? && current_user.admin %>
-			    <td style='text-align: right;'><br /><%= link_to 'Изменить', edit_post_comment_path(@post, c), class: 'btn btn-warning btn-xs' %>  <%= link_to "Удалить", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %></td>
+			    <td style='text-align: right;'><br />
+
+		    <div class="btn-group">
+  <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Действия <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'Изменить', edit_post_comment_path(@post, c) %></li>
+    <li role="separator" class="divider"></li>
+    <li><%= link_to "Удалить", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %></li>
+  </ul>
+</div>
+
+			    		</td>
 				<% else %>
 					<td></td>
 				<% end %>

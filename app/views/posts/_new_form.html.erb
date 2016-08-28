@@ -13,12 +13,12 @@
 
   <div class="field" >
     <h3>Заголовок</h3>
-    <%= f.text_field :title, size: "50x1" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "Заголовок", size: "50x1" %>
   </div>
 
   <div class="field">
     <h3>Сообщение</h3>
-    <%= f.text_area :content, size: "50x5" %>
+    <%= f.text_area :content, class: "form-control", placeholder: "Сообщение...", size: "50x5" %>
   </div>
   <br />
   <p class='btn btn-default'><%= link_to 'Отмена', posts_path %></p>   <%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-success' %>

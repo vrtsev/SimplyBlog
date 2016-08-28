@@ -21,7 +21,13 @@
     <%= f.text_area :content, size: "50x5" %>
   </div>
   <br />
-  <p class='btn btn-default'><%= link_to 'Назад', post_path(@post) %></p>   <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %>
+
+  <div class="row">
+    <div class="col-md-2"><%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %></div>
+    <div class="col-md-2"><%= link_to "Удалить", post_path(@post) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger' %></div>
+    <div class="col-md-6"></div>
+    <div class="col-md-2"><p class='btn btn-default'><%= link_to 'Назад', post_path(@post) %></p></div>
+  </div>
   
 <% end %>
 

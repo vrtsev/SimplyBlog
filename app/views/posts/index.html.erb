@@ -1,4 +1,4 @@
-<p id="notice", style='text-align: center; color: green;' class="bg-success"><%= notice %></p>
+<p id="notice", style='text-align: center; color: green;'><%= notice %></p>
 
 <% @posts.each do |post| %>
 <div class="panel panel-default">
@@ -8,7 +8,15 @@
   <div class="panel-body">
     <%= post.content %>
   </div>
-<div class="panel-footer"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= link_to post.user.email %>&nbsp&nbsp&nbsp   <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span></div>
+<div class="panel-footer"> 
+
+<div class="row">
+  <div class="col-md-4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= link_to post.user.email %></div>
+  <div class="col-md-5"></div>
+  <div class="col-md-3"><%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span></div>
+</div>
+
+</div>
 
 </div>
 <% end %>
