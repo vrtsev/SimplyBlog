@@ -8,7 +8,7 @@
   <div class="panel-body">
     <%= post.content %>
   </div>
-<div class="panel-footer"><%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span>&nbsp&nbsp&nbsp  <%= post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></div>
+<div class="panel-footer"> от <%= link_to post.user.email %>&nbsp&nbsp&nbsp  <%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span></div>
 
 </div>
 <% end %>
