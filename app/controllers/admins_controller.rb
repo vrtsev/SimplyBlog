@@ -94,10 +94,4 @@ class AdminsController < ApplicationController
       params.require(:admin).permit(:privilege)
     end
 
-    def check_admin
-      if current_user.admin
-      else
-        redirect_to 'posts/index'
-      end
-    end
 end

@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def check_admin
+      if current_user.admin
+      else
+        redirect_to 'posts/index'
+      end
+    end
+
   	def with_time_zone(&block)
   		time_zone = current_user.time_zone
   		logger.debug "Используется часовой пояс пользователя: #{time_zone}"

@@ -2,16 +2,43 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading"><h4><b><%= @post.title %></b></h4></div>
+  <div class="panel-heading">
+  <!-- Название поста и лейбл -->
+  	<div class="row">
+  		<div class="col-md-9">
+		  	<h4><b><%= @post.title %></b></h4>
+		  </div>
+		  <div class="col-md-3">
+		  	<% if @post.user.admin %>
+		  		<span class="label label-danger">Администрация</span>
+		  	<% end %>
+		  </div>
+		</div>
+
+  </div>
   <div class="panel-body"><p><%= @post.content %></p></div>
   <div class="panel-footer">
-
+  
 		<div class="row">
 		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to @post.user.email if @post.user %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
-		  <div class="col-md-4">
+		  <div class="col-md-2"></div>
+		  <div class="col-md-2">
+
+
 		  	<% if user_signed_in? && current_user.admin %>
-			    	<%= link_to 'Изменить', edit_post_path(@post) , class: 'btn btn-warning btn-xs' %>  <%= link_to "Удалить", post_path(@post) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger btn-xs' %>
+
+			    	<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Запись <span class="caret"></span>  </button>
+				 			 	  <ul class="dropdown-menu">
+				   				  <li><%= link_to 'Изменить', edit_post_path(@post) %></li>
+				 				    <li><%= link_to "Удалить пост", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
+				  				  <li role="separator" class="divider"></li>
+ 				   				  <li><%= link_to "Лайки", posts_path %></li>
+				  				</ul>
+			 
+
 			  <% end %>
+
+
 			</div>
 		</div>
 
