@@ -67,9 +67,10 @@ class PostsController < ApplicationController
 
   def likes
     @post = Post.find(params[:post_id])
-    @trigger
     @post.increment!(:likes)
-    redirect_to action: :index
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Вы оценили запись' }
+    end
   end
 
   def my_posts

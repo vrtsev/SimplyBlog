@@ -13,7 +13,9 @@
       </div>
       <div class="col-md-3">
         <% if post.user %>
-          <span class="label label-danger">Администрация</span>
+          <% if post.user.admin %>
+            <span class="label label-danger">Администрация</span>
+          <% end %>
         <% else %>
         <% end %>
       </div>
@@ -29,7 +31,7 @@
 <div class="row">
   <div class="col-md-4">
 
-    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= link_to post.user.email if post.user %>
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= if post.user; link_to post.user.email; else; "Польз. удален"; end %>
 
   </div>
   <div class="col-md-1"></div>

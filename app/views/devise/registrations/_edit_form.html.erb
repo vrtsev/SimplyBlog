@@ -41,8 +41,12 @@
           <br />
 
           <h3>Удалить аккаунт</h3>
-            <p>Нам очень грустно, что Вы приняли это решение. В любом случае мы будем рады вас видеть снова ;)
+            <p>Нам очень грустно, что Вы приняли это решение. В любом случае мы будем рады вас видеть снова ;)</p>
             
             <br /><br />
 
-            <%= button_to "Покинуть сайт", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
+            <div class="alert alert-warning" role="alert">На данный момент опция удаления аккаунта отключена. Приносим свои извинения</div>
+
+            <!-- Поставь знак равно, чтобы отобразить кнопку и разрешить удаление юзеров -->
+
+            <% button_to "Покинуть сайт", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>

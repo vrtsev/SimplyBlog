@@ -41,7 +41,6 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Администратор:  <%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a><%= link_to "Моя страница", edit_user_registration_path(current_user) %></a></li>
-              <li><a href="#"><%= link_to 'Инфо', new_post_path %></a></li>
               <li role="separator" class="divider"></li>
               <li><a><%= link_to "Выйти", destroy_user_session_path, method: :delete %></a></li>
             </ul>
@@ -79,7 +78,7 @@
   </div>
 
   <hr>
-  <p class="text-muted; text-center">SimpleBlog, 2016. All rights reserved. Created by Vadim on RoR </p>
+  <p class="text-muted; text-center">SimplyBlog, 2016. All rights reserved. Created by Vadim on RoR </p>
   <br />
 
 	</div>

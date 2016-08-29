@@ -37,7 +37,6 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a><%= link_to "Моя страница", edit_user_registration_path(current_user) %></a></li>
-              <li><a href="#"><%= link_to 'Настройки', new_post_path %></a></li>
               <li role="separator" class="divider"></li>
               <li><a><%= link_to "Выйти", destroy_user_session_path, method: :delete %></a></li>
             </ul>
@@ -67,7 +66,7 @@
                 <a href="/my_posts" class="list-group-item">Мои публикации<span class="badge"><%= current_user.posts.count %></span></a>
               <% end %>
               <% if current_user.comments.count > 0 %>
-                <a href="/my_posts" class="list-group-item">Комментарии<span class="badge"><%= current_user.comments.count %></span></a>
+                <a href="#" class="list-group-item">Комментарии<span class="badge"><%= current_user.comments.count %></span></a>
               <% end %>
               <a href="/users/edit" class="list-group-item">Профиль</a>
             <% end %>
@@ -96,7 +95,7 @@
   <!-- Конец тела сайта -->
 
   <hr>
-  <p class="text-muted; text-center"><b>SimpleBlog</b>, 2016. All rights reserved. Created by <b>Vadim</b> on RoR </p>
+  <p class="text-muted; text-center"><b>SimplyBlog</b>, 2016. All rights reserved. Created by <b>Vadim</b> on RoR </p>
   <br />
 
 

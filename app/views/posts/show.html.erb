@@ -9,8 +9,10 @@
 		  	<h4><b><%= @post.title %></b></h4>
 		  </div>
 		  <div class="col-md-3">
-		  	<% if @post.user.admin %>
-		  		<span class="label label-danger">Администрация</span>
+		  	<% if @post.user %>
+		  		<% if @post.user.admin %>
+		  			<span class="label label-danger">Администрация</span>
+		  		<% end %>
 		  	<% end %>
 		  </div>
 		</div>
@@ -20,7 +22,7 @@
   <div class="panel-footer">
   
 		<div class="row">
-		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to @post.user.email if @post.user %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
+		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= if @post.user; link_to @post.user.email; else; "Польз. удален"; end  %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
 		  <div class="col-md-2"></div>
 		  <div class="col-md-2">
 
