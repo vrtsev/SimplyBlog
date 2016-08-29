@@ -56,10 +56,7 @@
 
       <div class="col-md-3" style="padding: 4%">
         <ul class="nav nav-pills nav-stacked">
-          <li role="presentation" class="active"><a href="/admins/index">Админ-панель</a></li>
-          <li role="presentation"><a href="/admins/warnings">
-            Обьявления<span class="badge"><%= Warning.count if Warning.count > 0 %></span></a>
-          </li>
+          <li role="presentation" class="active"><a href="/admins/index">Админ | Обьявления <span class="badge"><%= Warning.count if Warning.count > 0 %></a></li>
           <li role="presentation"><a href="/admins/users">Пользователи<span class="badge"><%= User.count %></span></a></a></li>
           <li role="presentation"><a href="/admins/posts">Публикации<span class="badge"><%= Post.count %></span></a></li>
         </ul>

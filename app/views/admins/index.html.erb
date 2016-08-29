@@ -2,9 +2,7 @@
 
 
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h4><b>Вас приветствует Админ-панель</b></h4>
-  </div>
+  <div class="panel-heading"><h4><b>Вас приветствует Админ-панель</b></h4></div>
   <div class="panel-body">
     Добро пожаловать в систему управления блогом
     В боковом меню представлены разделы, в которых собрана 
@@ -12,22 +10,25 @@
 
     Так же с этих разделов доступно управление контентом
   </div>
-<div class="panel-footer"> 
+  <div class="panel-footer"> 
 
-<div class="row">
-  <div class="col-md-4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Администратор</div>
-  <div class="col-md-1"></div>
-  <div class="col-md-4" align='right'><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Приветствие <span class="badge">0</span></div>
-  <div class="col-md-3">Новости <span class="badge">0</span></div>
-</div>
+    <div class="row">
+      <div class="col-md-4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Администратор</div>
+      <div class="col-md-1"></div>
+    </div>
 
-</div>
+  </div>
 
 </div>
 
 
 <% Warning.all.each do |w| %>
-  <div class="panel panel-danger">
+  
+  <% if w.public %>
+    <div class="panel panel-danger">
+  <% else %>
+    <div class="panel panel-info">
+  <% end %>
 
       <div class="panel-heading">
         <div class="row">
