@@ -12,12 +12,6 @@
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="/"><b>Simply</b>Blog by Vadim</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,8 +57,10 @@
           <li role="presentation" class="active"><a href="/">Домой</a></li>
 
           <% if user_signed_in? %>
+            <% if current_user.posts.count > 0 %>
+              <li role="presentation"><a href="/my_posts">Мои публикации <span class="badge"><%= current_user.posts.count %></span></a></li>
+            <% end %>
             <li role="presentation"><a href="/users/edit">Профиль</a></li>
-            <li role="presentation"><a href="/my_posts">Публикации <span class="badge"><%= current_user.posts.count %></span></a></li>
           <% end %>
 
           <li role="presentation"><a href="/about">О сайте</a></li>

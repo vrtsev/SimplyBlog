@@ -18,9 +18,9 @@
           <div class="field">
             <h3>Пароль</h3>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> символов минимум)</em>
-            <br />
-            <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "Пароль...", size: "50x1" %>
+              <em>(<%= @minimum_password_length %> символов минимум)</em>
+              <br />
+              <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "Пароль...", size: "50x1" %>
           </div>
 
           <div class="field">
