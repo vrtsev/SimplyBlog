@@ -10,15 +10,15 @@
       <div class="col-md-1"></div>
       <div class="col-md-9">
 
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <h3>E-mail</h3>
-            <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "example@mail.com", size: "50x1" %>
+            <%= f.input :email, label: false, autofocus: true, class: "form-control", placeholder: "example@mail.com" %>
           </div>
 
           <div class="field">
             <h3>Пароль</h3>
-            <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Пароль...", size: "50x1" %>
+            <%= f.input :password, label: false, autocomplete: "off", class: "form-control", placeholder: "Пароль..." %>
           </div>
 
           <br />

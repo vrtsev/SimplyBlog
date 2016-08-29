@@ -1,8 +1,8 @@
 <h2>Комментировать </h2>
 
-<%= form_for [@post, @post.comments.build] do |f| %>
+<%= simple_form_for [@post, @post.comments.build] do |f| %>
 
-  <div class="field"><%= f.text_area :content, class: "form-control", placeholder: "Ваш комментарий...", size: "90x4" %></div>
+  <div class="field"><%= f.input :content, as: :text, label: false, hint: 'Оскорбительная речь, спам и флуд будут удалены', class: "form-control", placeholder: "Ваш комментарий..." %></div>
   <br />
 	<div class="actions"><%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-success' %></div>
 

@@ -1,24 +1,13 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@post) do |f| %>
 
   <div class="field" >
     <h3>Заголовок</h3>
-    <%= f.text_field :title, class: "form-control", placeholder: "Заголовок", size: "50x1" %>
+    <%= f.input :title, label: false, class: "form-control", placeholder: "Заголовок" %>
   </div>
 
   <div class="field">
     <h3>Сообщение</h3>
-    <%= f.text_area :content, class: "form-control", placeholder: "Сообщение...", size: "50x5" %>
+    <%= f.input :content, as: :text, label: false, class: "form-control", placeholder: "Сообщение..." %>
   </div>
   <br />
   <p class='btn btn-default'><%= link_to 'Отмена', post_path(@post) %></p>   <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %><br /><%= link_to "Удалить", post_path(@post) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger' %>
