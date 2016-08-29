@@ -76,6 +76,11 @@ class PostsController < ApplicationController
     @my_posts = current_user.posts
   end
 
+  def about
+    @r = rand(1..2) # => 22
+    render action: "about_site", layout: "about"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

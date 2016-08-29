@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
 	get '/my_posts', to: 'posts#my_posts'
+  get '/about', to: 'posts#about'
   scope 'admins' do
     resources :warnings
   end

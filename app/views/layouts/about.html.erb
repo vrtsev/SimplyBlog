@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default" style="margin: 0%;">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -48,48 +48,30 @@
     </div>
   </nav>
 
+  <!-- Изображение -->
+  <div class="container-fluid" style="padding: 0%;">
 
+  <% if @r == 1 %>
+    <%= image_tag("bg1.jpg", width: '100%') %>
+  <% else %>
+    <%= image_tag("bg2.jpg", width: '100%') %>
+  <% end %>
 
-  <!-- Тело сайта -->
+ 	</div>
+  <!-- Конец изображения -->
+
+  <!-- ТЕЛО САЙТА -->
   <div class="container">
     <div class="row">
 
-      <div class="col-md-3" style="padding: 4%">
-
-        <!-- Сайдбар -->
-        <div class="col-md-12">
-
-          <a href="/" class="list-group-item active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Главная</a>
-          <ul class="list-group">
-          <!-- Если залогинен -->
-            <% if user_signed_in? %>
-              <% if current_user.posts.count > 0 %>
-                <a href="/my_posts" class="list-group-item">Мои публикации<span class="badge"><%= current_user.posts.count %></span></a>
-              <% end %>
-              <% if current_user.comments.count > 0 %>
-                <a href="/my_posts" class="list-group-item">Комментарии<span class="badge"><%= current_user.comments.count %></span></a>
-              <% end %>
-              <a href="/users/edit" class="list-group-item">Профиль</a>
-            <% end %>
-          </ul>
-          <!-- Конец логин-бара -->
-          <ul class="list-group">
-            <a href="http://vk.com/v.rtsev" class="list-group-item">Поддержка</a>
-            <a href="/about" class="list-group-item">О сайте</a>
-          </ul>
-        </div>
-        <!-- Конец сайдбара -->
-
-      </div>
-
-      <div class="col-md-7" style="padding: 35px;">
+      <!-- ЦЕНТРАЛЬНАЯ ЧАСТЬ -->
+      <div class="col-md-12" style="padding: 35px;">
         <body>
           <%= yield %>
         </body>
       </div>
+      <!-- конец центральной части -->
 
-      <div class="col-md-2" style="padding: 4px">
-      </div>
 
     </div>
   </div>
