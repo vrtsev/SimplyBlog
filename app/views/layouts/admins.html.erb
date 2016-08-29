@@ -1,16 +1,83 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestBlog</title>
+    <title>SimpleBlog</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-	<div class="container">
-	  <body>
-	    <%= yield %>
-	  </body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><b>Simply</b>Blog by Vadim</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">        
+          <% if user_signed_in? %>
+            <%= link_to "Создать пост", new_post_path, class: "btn btn-info navbar-btn" %>
+          <% end %>        
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <% unless user_signed_in? %>
+            <li><%= link_to "Войти", new_user_session_path %></li>
+            <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Регистрация", new_user_registration_path %></button></li>
+          <% else %>
+
+          <% if user_signed_in? && current_user.admin %>
+            <%= link_to "На сайт", root_path, class: "btn btn-success navbar-btn" %>
+          <% end %>
+
+          <li class="dropdown">
+
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Администратор:  <%= current_user.email %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a><%= link_to "Моя страница", edit_user_registration_path(current_user) %></a></li>
+              <li><a href="#"><%= link_to 'Инфо', new_post_path %></a></li>
+              <li role="separator" class="divider"></li>
+              <li><a><%= link_to "Выйти", destroy_user_session_path, method: :delete %></a></li>
+            </ul>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3" style="padding: 4%">
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation" class="active"><a href="/admins/index">Админ-панель</a></li>
+          <li role="presentation"><a href="/admins/users">Пользователи<span class="badge"><%= User.count %></span></a></a></li>
+          <li role="presentation"><a href="#">Публикации</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-7" style="padding: 35px;">
+        <body>
+          <%= yield %>
+        </body>
+      </div>
+
+      <div class="col-md-2" style="padding: 4px">
+      </div>
+
+    </div>
+  </div>
+
+
+
 	</div>
 </html>

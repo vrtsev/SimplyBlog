@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  # resources :admins
+
 	root "posts#index"
   resources :posts do
   	resources :comments
+  	get :likes
   end
   devise_for :users
 

@@ -13,21 +13,14 @@
 
   <div class="field" >
     <h3>Заголовок</h3>
-    <%= f.text_field :title, size: "50x1"%>
+    <%= f.text_field :title, class: "form-control", placeholder: "Заголовок", size: "50x1" %>
   </div>
 
   <div class="field">
     <h3>Сообщение</h3>
-    <%= f.text_area :content, size: "50x5" %>
+    <%= f.text_area :content, class: "form-control", placeholder: "Сообщение...", size: "50x5" %>
   </div>
   <br />
-
-  <div class="row">
-    <div class="col-md-2"><%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %></div>
-    <div class="col-md-2"><%= link_to "Удалить", post_path(@post) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger' %></div>
-    <div class="col-md-6"></div>
-    <div class="col-md-2"><p class='btn btn-default'><%= link_to 'Назад', post_path(@post) %></p></div>
-  </div>
+  <p class='btn btn-default'><%= link_to 'Отмена', post_path(@post) %></p>   <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %><br /><%= link_to "Удалить", post_path(@post) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger' %>
   
 <% end %>
-
