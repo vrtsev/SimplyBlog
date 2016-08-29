@@ -69,6 +69,10 @@ class PostsController < ApplicationController
     redirect_to action: :index
   end
 
+  def my_posts
+    @my_posts = current_user.posts
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -79,4 +83,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :user_id, :likes)
     end
+
 end

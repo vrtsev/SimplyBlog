@@ -23,7 +23,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">        
           <% if user_signed_in? %>
-            <%= link_to "Создать пост", new_post_path, class: "btn btn-info navbar-btn" %>
+            <% if user_signed_in? && current_user.admin %>
+              <%= link_to "На сайт", root_path, class: "btn btn-success navbar-btn" %>
+            <% end %>
           <% end %>        
         </ul>
 
@@ -33,10 +35,6 @@
             <li><%= link_to "Войти", new_user_session_path %></li>
             <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Регистрация", new_user_registration_path %></button></li>
           <% else %>
-
-          <% if user_signed_in? && current_user.admin %>
-            <%= link_to "На сайт", root_path, class: "btn btn-success navbar-btn" %>
-          <% end %>
 
           <li class="dropdown">
 
@@ -61,7 +59,7 @@
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation" class="active"><a href="/admins/index">Админ-панель</a></li>
           <li role="presentation"><a href="/admins/users">Пользователи<span class="badge"><%= User.count %></span></a></a></li>
-          <li role="presentation"><a href="#">Публикации</a></li>
+          <li role="presentation"><a href="/admins/posts">Публикации<span class="badge"><%= Post.count %></span></a></li>
         </ul>
       </div>
 
@@ -77,7 +75,9 @@
     </div>
   </div>
 
-
+  <hr>
+  <p class="text-muted; text-center">SimpleBlog, 2016. All rights reserved. Created by Vadim on RoR </p>
+  <br />
 
 	</div>
 </html>

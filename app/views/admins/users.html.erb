@@ -4,33 +4,32 @@
   <li class="active">Пользователи</li>
 </ol>
 
-<% @users.each do |u| %>
 
-<table class="table table-striped">
-  <tr>
-	  <th >id</th>
-	  <th >email</th>
-	  <th >created_at</th>
-	  <th >sign_in_count</th>
-	  <th >last_sign_in_at</th>
-	</tr>
-	<% if u.admin %>
-		<tr>
-		  <td class="danger"><%= u.id %></td>
-		  <td class="danger"><%= u.email %></td>
-		  <td class="danger"><%= u.created_at %></td>
-		  <td class="danger"><%= u.sign_in_count %></td>
-		  <td class="danger"><%= u.last_sign_in_at %></td>
-		</tr>
-	<% else %>
-		<tr>
-		  <td><%= u.id %></td>
-		  <td><%= u.email %></td>
-		  <td><%= u.created_at %></td>
-		  <td><%= u.sign_in_count %></td>
-		  <td><%= u.last_sign_in_at %></td>
-		</tr>
-	<% end %>
-</table>
+<div class="panel panel-default">
+  <div class="panel-heading"> Все зарегистрированные пользователи</div>
+  <div class="panel-body">
 
-<% end %>
+
+		<table class="table table-striped">
+		  <tr>
+			  <th >id</th>
+			  <th >Email</th>
+			  <th >Входов</th>
+			  <th >Зарегистрирован</th>
+			  <th >Был в сети</th>
+			</tr>
+				<tr>
+		<% @users.each do |u| %>
+				<tr>
+				  <td><%= u.id %></td>
+				  <td><%= u.email %></td>
+				  <td><%= u.sign_in_count %></td>
+				  <td><%= u.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></td>
+				  <td><%= u.last_sign_in_at.strftime("%d.%m.%Y в %H:%M:%S") %></td>
+		<% end %>
+				</tr>
+		</table>
+
+
+	</div>
+</div>

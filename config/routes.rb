@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   	get :likes
   end
   devise_for :users
+	get '/my_posts', to: 'posts#my_posts'
 
   get ':controller(/:action(/:id))'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

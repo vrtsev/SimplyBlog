@@ -43,7 +43,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a><%= link_to "Моя страница", edit_user_registration_path(current_user) %></a></li>
-              <li><a href="#"><%= link_to 'Инфо', new_post_path %></a></li>
+              <li><a href="#"><%= link_to 'Настройки', new_post_path %></a></li>
               <li role="separator" class="divider"></li>
               <li><a><%= link_to "Выйти", destroy_user_session_path, method: :delete %></a></li>
             </ul>
@@ -59,9 +59,17 @@
 
       <div class="col-md-3" style="padding: 4%">
         <ul class="nav nav-pills nav-stacked">
+
           <li role="presentation" class="active"><a href="/">Домой</a></li>
-          <li role="presentation"><a href="#">Профиль</a></li>
-          <li role="presentation"><a href="#">Публикации</a></li>
+
+          <% if user_signed_in? %>
+            <li role="presentation"><a href="/users/edit">Профиль</a></li>
+            <li role="presentation"><a href="my_posts">Публикации <span class="badge"><%= current_user.posts.count %></span></a></li>
+          <% end %>
+
+          <li role="presentation"><a href="/about">О сайте</a></li>
+          <li role="presentation"><a href="http://vk.com/v.rtsev">Поддержка</a></li>
+
         </ul>
       </div>
 
@@ -77,6 +85,9 @@
     </div>
   </div>
 
+  <hr>
+  <p class="text-muted; text-center">SimpleBlog, 2016. All rights reserved. Created by Vadim on RoR </p>
+  <br />
 
 
 	</div>
