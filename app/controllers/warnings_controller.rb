@@ -43,7 +43,7 @@ class WarningsController < ApplicationController
   # PATCH/PUT /warnings/1.json
   def update
     respond_to do |format|
-      if @warning.update(warning_params)
+      if @warning.update(public: warning_params[:public])
         format.html { redirect_to @warning, notice: 'Warning was successfully updated.' }
         format.json { render :show, status: :ok, location: @warning }
       else
@@ -71,6 +71,6 @@ class WarningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def warning_params
-      params.require(:warning).permit(:title, :content)
+      params.require(:warning).permit(:title, :content, :public)
     end
 end

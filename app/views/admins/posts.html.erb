@@ -40,7 +40,7 @@
 					</td>
 				  <td><%= p.title %></td>
 				  <td><%= p.likes %></td>
-				  <td><%= p.user.email %></td>
+				  <td><%= p.user.email if p.user %></td>
 				  <td><%= p.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></td>
 				  <td><%= p.updated_at.strftime("%d.%m.%Y в %H:%M:%S") %></td>
 		<% end %>

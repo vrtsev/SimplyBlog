@@ -1,43 +1,47 @@
 <% Warning.all.each do |w| %>
 
-  <div class="panel panel-danger">
+  <% if w.public %>
 
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-md-9">
-          <h3 class="panel-title"><b><%= w.title %></b></h3>
-        </div>
-        <div class="col-md-3">
-            <span class="label label-danger">Администрация</span>
+
+    <div class="panel panel-danger">
+
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-9">
+            <h3 class="panel-title"><b><%= w.title %></b></h3>
+          </div>
+          <div class="col-md-3">
+              <span class="label label-danger">Администрация</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="panel-body"><%= w.content %></div>
+      <div class="panel-body"><%= w.content %></div>
 
-    <div class="panel-footer">
-      <div class="row">
+      <div class="panel-footer">
+        <div class="row">
 
-        <div class="col-md-9">
-          <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= w.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p>
+          <div class="col-md-9">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= w.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p>
+          </div>
+
+          <div class="col-md-3">
+            <% if user_signed_in? && current_user.admin %>
+
+              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия &nbsp<span class="caret"></span>  </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Новое', new_warning_path %></li>
+                <li><%= link_to 'Изменить', edit_warning_path(w) %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "Удалить обьявление", warning_path(w), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
+              </ul>
+            <% end %>
+          </div>
+
         </div>
-
-        <div class="col-md-3">
-          <% if user_signed_in? && current_user.admin %>
-
-            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия &nbsp<span class="caret"></span>  </button>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Новое', new_warning_path %></li>
-              <li><%= link_to 'Изменить', edit_warning_path(w) %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to "Удалить обьявление", warning_path(w), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
-            </ul>
-          <% end %>
-        </div>
-
       </div>
-    </div>
 
-  </div>
+    </div>
+  <% end %>
 
 <% end %>
