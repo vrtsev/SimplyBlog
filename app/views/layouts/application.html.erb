@@ -64,7 +64,7 @@
 
           <% if user_signed_in? %>
             <li role="presentation"><a href="/users/edit">Профиль</a></li>
-            <li role="presentation"><a href="my_posts">Публикации <span class="badge"><%= current_user.posts.count %></span></a></li>
+            <li role="presentation"><a href="/my_posts">Публикации <span class="badge"><%= current_user.posts.count %></span></a></li>
           <% end %>
 
           <li role="presentation"><a href="/about">О сайте</a></li>
@@ -86,7 +86,7 @@
   </div>
 
   <hr>
-  <p class="text-muted; text-center">SimpleBlog, 2016. All rights reserved. Created by Vadim on RoR </p>
+  <p class="text-muted; text-center"><b>SimpleBlog</b>, 2016. All rights reserved. Created by <b>Vadim</b> on RoR </p>
   <br />
 
 
