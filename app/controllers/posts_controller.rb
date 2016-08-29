@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :about]
 
   # GET /posts
   # GET /posts.json
