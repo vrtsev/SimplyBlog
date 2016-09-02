@@ -1,5 +1,9 @@
-<h1>New Warning</h1>
+<title>Новое обьявление | SimplyBlog by Vadim</title>
 
-<%= render 'form', warning: @warning %>
+<div class="panel panel-default">
 
-<%= link_to 'Back', warnings_path %>
+  <div class="panel-body">
+    <p><%= render partial: 'new_form', warning: @warning %></p>
+  </div>
+
+</div>

@@ -1,14 +1,3 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @warning.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @warning.content %>
-</p>
-
-<%= link_to 'Edit', edit_warning_path(@warning) %> |
-<%= link_to 'Back', warnings_path %>
+<%= render template: 'warnings/index.html.erb', warning: @warning %>

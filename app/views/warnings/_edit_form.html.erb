@@ -1,0 +1,14 @@
+<%= simple_form_for(@warning) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<h3>Заголовок</h3>
+    <%= f.input :title, label: false, class: "form-control", placeholder: "Заголовок" %>
+    <h3>Сообщение</h3>
+    <%= f.input :content, as: :text, label: false, class: "form-control", placeholder: "Сообщение..." %>
+    <%= f.input :public, as: :boolean, label: "Опубликовать на главной", checked_value: true, unchecked_value: false %>
+  </div>
+  <br />
+ 
+  <p class='btn btn-default'><%= link_to 'Отмена', '/admins/index' %></p>   <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %><br /><%= link_to "Удалить", warning_path(@warning) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger' %>
+<% end %>

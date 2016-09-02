@@ -1,6 +1,9 @@
-<h1>Editing Warning</h1>
+<title>Изменение обьявления | SimplyBlog by Vadim</title>
 
-<%= render 'form', warning: @warning %>
+<div class="panel panel-default">
 
-<%= link_to 'Show', @warning %> |
-<%= link_to 'Back', warnings_path %>
+  <div class="panel-body">
+    <p><%= render partial: 'edit_form', warning: @warning %></p>
+  </div>
+
+</div>

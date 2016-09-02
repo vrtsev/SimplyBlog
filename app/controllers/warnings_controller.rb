@@ -1,4 +1,6 @@
 class WarningsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
   before_action :set_warning, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :check_admin
 
@@ -29,10 +31,9 @@ class WarningsController < ApplicationController
 
     respond_to do |format|
       if @warning.save
-        format.html { redirect_to @warning, notice: 'Warning was successfully created.' }
+        format.html { redirect_to "/admins/index", notice: 'Warning was successfully created.' }
         format.json { render :show, status: :created, location: @warning }
       else
-        raise 'ololo'
         format.html { render :new }
         format.json { render json: @warning.errors, status: :unprocessable_entity }
       end
@@ -43,8 +44,8 @@ class WarningsController < ApplicationController
   # PATCH/PUT /warnings/1.json
   def update
     respond_to do |format|
-      if @warning.update(public: warning_params[:public])
-        format.html { redirect_to @warning, notice: 'Warning was successfully updated.' }
+      if @warning.update(warning_params)
+        format.html { redirect_to "/admins/index", notice: 'Warning was successfully updated.' }
         format.json { render :show, status: :ok, location: @warning }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class WarningsController < ApplicationController
   def destroy
     @warning.destroy
     respond_to do |format|
-      format.html { redirect_to warnings_url, notice: 'Warning was successfully destroyed.' }
+      format.html { redirect_to "/admins/index", notice: 'Warning was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
