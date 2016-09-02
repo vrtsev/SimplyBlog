@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
   def edit
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    update
   end
 
 	def create
@@ -30,9 +29,12 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+
     respond_to do |format|
-      if @comment.update(post_params)
-        format.html { redirect_to @comment, notice: 'Вы успешно обновили комментарий' }
+      if @comment.update_attributes(comment_params)
+        format.html { redirect_to @post, notice: 'Вы успешно обновили комментарий' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
