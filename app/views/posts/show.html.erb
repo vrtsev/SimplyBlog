@@ -80,7 +80,7 @@
 					<hr>
 			  <% end %>
 
-				<% if user_signed_in? %>                             
+				<% if user_signed_in?%>                             
 					<%= render partial: 'comments/new_form' %>
 				<% else %>
 					<%= link_to "Зарегистрируйтесь", new_user_registration_path, class: 'btn btn-success' %> или <%= link_to "Войдите", new_user_session_path %> чтобы оставлять комментарии
