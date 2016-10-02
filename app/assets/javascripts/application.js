@@ -15,7 +15,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$('document').ready(function(){
+
+switcher = false
+
+$(document).on('turbolinks:load', function() {
+
+
+	if (switcher === true) {
+		$('#sidebar').hide();
+		$('#sidebar_row').attr("class", "col-md-1");
+		$('#content_row').attr("class", "col-md-9");
+	};
 
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
@@ -30,7 +40,26 @@ $('document').ready(function(){
 	})
 
 	$('#sidebar-btn').click(function(){
-		$('#sidebar').slideToggle()
+
+
+		var hide = $('#sidebar').attr('display', 'none');
+		var show = $('#sidebar').slideToggle();
+		
+		if ($('#sidebar_row').hasClass('col-md-3') ) {
+			hide
+			$('#sidebar_row').attr("class", "col-md-1");
+			$('#content_row').attr("class", "col-md-9");
+			switcher = true
+			console.log(switcher)
+		} else {
+			$('#sidebar_row').attr("class", "col-md-3");
+			$('#content_row').attr("class", "col-md-7");
+			show
+			switcher = false
+			console.log(switcher)
+		};
+
+
 	})
 
 })

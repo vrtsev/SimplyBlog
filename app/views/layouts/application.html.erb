@@ -15,8 +15,8 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">        
-          <button type="button" class="btn btn-default" aria-label="Left Align">
-            <span id="sidebar-btn" class="glyphicon glyphicon-menu-hamburger"></span>
+          <button id="sidebar-btn" type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
           </button>
           &nbsp
           <% if user_signed_in? %>
@@ -56,7 +56,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-md-3" style="padding: 4%">
+      <div id="sidebar_row" class="col-md-3" style="padding: 4%">
 
         <!-- Сайдбар -->
         <div id="sidebar" class="col-md-12">
@@ -84,7 +84,7 @@
 
       </div>
 
-      <div class="col-md-7" style="padding: 35px;">
+      <div id="content_row" class="col-md-7" style="padding: 35px;">
         <body>
           <%= yield %>
         </body>
