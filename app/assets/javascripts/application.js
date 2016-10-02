@@ -39,6 +39,10 @@ $(document).on('turbolinks:load', function() {
 	  $('#myInput').focus()
 	})
 
+	$('#post_create').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+
 	$('#sidebar-btn').click(function(){
 
 
