@@ -17,6 +17,20 @@
 //= require_tree .
 $('document').ready(function(){
 
-	$
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+
+	$(function () {
+	  $('[data-toggle="popover"]').popover()
+	})
+
+	$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+
+	$('#sidebar-btn').click(function(){
+		$('#sidebar').slideToggle()
+	})
 
 })

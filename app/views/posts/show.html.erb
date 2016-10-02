@@ -57,7 +57,7 @@
 		<div class="row">
 		  <div class="col-md-12" style="padding: 5%;">
 
-			  <% @post.comments.each do |c| %>
+			  <% @post.comments.order('created_at DESC').each do |c| %>
 
 			  	<blockquote>
 					  <p><%= c.content %></p>

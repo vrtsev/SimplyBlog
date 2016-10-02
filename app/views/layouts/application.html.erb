@@ -15,9 +15,13 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">        
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span id="sidebar-btn" class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+          &nbsp
           <% if user_signed_in? %>
             <%= link_to "Создать пост", new_post_path, class: "btn btn-info navbar-btn" %>
-          <% end %>        
+          <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -55,7 +59,7 @@
       <div class="col-md-3" style="padding: 4%">
 
         <!-- Сайдбар -->
-        <div class="col-md-12">
+        <div id="sidebar" class="col-md-12">
 
           <a href="/" class="list-group-item active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Главная</a>
           <ul class="list-group">
