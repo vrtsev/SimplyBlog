@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   	get :likes
   end
   devise_for :users
-	get '/my_posts', to: 'posts#my_posts'
+  get '/my_posts', to: 'posts#my_posts'
+  get '/my_comments', to: 'posts#my_comments'
   get '/about', to: 'posts#about'
   scope 'admins' do
     resources :warnings

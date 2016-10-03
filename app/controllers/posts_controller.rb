@@ -78,6 +78,10 @@ class PostsController < ApplicationController
     @my_posts = current_user.posts
   end
 
+  def my_comments
+    @my_comments = current_user.comments
+  end
+
   def about
     @r = rand(1..2) # => 22
     render action: "about_site", layout: "about"
