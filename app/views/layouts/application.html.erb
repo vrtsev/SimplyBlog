@@ -75,11 +75,10 @@
 
             <li class="dropdown">
 
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <b><%= current_user.email %></b> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <b><%= current_user.nickname || current_user.email %></b> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a><%= link_to "Моя страница", edit_user_registration_path(current_user) %></a></li>
-                <li role="separator" class="divider"></li>
-                <li><a><%= link_to "Выйти", destroy_user_session_path, method: :delete %></a></li>
+                <li><%= link_to "Моя страница", edit_user_registration_path(current_user) %></li>
+                <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
               </ul>
             </li>
             <% end %>

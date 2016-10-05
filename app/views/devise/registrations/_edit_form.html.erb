@@ -27,6 +27,7 @@
             <h3>Текущий пароль</h3> <i>(для подтверждения изменений)</i><br />
             <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "Текущий пароль" %>
           </div>
+          <%= image_tag current_user.photo.thumb %>
 
           <br />
 
