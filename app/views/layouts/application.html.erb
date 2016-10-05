@@ -22,9 +22,10 @@
             </button>
             &nbsp
             <% if user_signed_in? %>
-              <%= link_to "Создать пост", "#", class: "btn btn-info navbar-btn", id: "post_create", "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
+              <%= link_to "Создать запись", "#", class: "btn btn-info navbar-btn", id: "post_create", "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
+              <%= link_to "Запись в дневник", "#", class: "btn btn-default navbar-btn", id: "diary_create", "data-toggle" => "modal", "data-target"=>"#newdiary_modal" %>
 
-              <!-- Modal -->
+              <!-- Modal for new post-->
               <div class="modal fade" id="newpost_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -34,6 +35,22 @@
                     </div>
                     <div class="modal-body">
                       <%= render :partial => 'posts/new' %>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal for new diary post-->
+              <div class="modal fade" id="newdiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Новая запись в дневник</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= render :partial => 'diaries/new' %>
                     </div>
                     
                   </div>
@@ -58,7 +75,7 @@
 
             <li class="dropdown">
 
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <%= current_user.email %> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <b><%= current_user.email %></b> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a><%= link_to "Моя страница", edit_user_registration_path(current_user) %></a></li>
                 <li role="separator" class="divider"></li>
@@ -92,6 +109,7 @@
                 <% if current_user.comments.count > 0 %>
                   <a href="/my_comments" class="list-group-item">Комментарии<span class="badge"><%= current_user.comments.count %></span></a>
                 <% end %>
+                <a href="/diaries" class="list-group-item">Дневник</a> 
                 <a href="/users/edit" class="list-group-item">Профиль</a>
               <% end %>
             </ul>

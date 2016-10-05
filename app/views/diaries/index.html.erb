@@ -1,0 +1,61 @@
+<title>Мой дневник | SimplyBlog by Vadim</title>
+
+<p id="notice", style='text-align: center; color: green;'><%= notice %></p>
+
+<div class="alert alert-info" role="alert">Дневник - это Ваше личное пространство, где Вы можете создавать заметки, важные записи, данные, просмотреть которые имеете возможность только Вы.</div>
+
+<% @diaries.each do |d| %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+
+
+    <div class="row">
+      <div class="col-md-9">
+        <h4><b><%= d.title %></b></h4>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+
+
+  </div>
+  <div class="panel-body">
+    <%= d.content %>
+  </div>
+<div class="panel-footer"> 
+
+    <div class="row">
+      <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= d.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>     
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+
+
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Запись <span class="caret"></span>  </button>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'Изменить', "#", id: "diary_create", "data-toggle" => "modal", "data-target"=>"#editdiary_modal" %></li>
+                    <li><%= link_to "Удалить", diary_path(d), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
+                  </ul>
+       
+      <!-- Modal for edit diary-->
+              <div class="modal fade" id="editdiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Изменить запись</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= render :partial => 'diaries/edit' %>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+      </div>
+    </div>
+
+</div>
+
+</div>
+<% end %>
