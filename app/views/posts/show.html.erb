@@ -24,7 +24,7 @@
   <div class="panel-footer">
   
 		<div class="row">
-		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= if @post.user; link_to @post.user.email; else; "Польз. удален"; end  %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
+		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= if @post.user; link_to @post.user.nickname || @post.user.email; else; "Польз. удален"; end  %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
 		  <div class="col-md-2"></div>
 		  <div class="col-md-2">
 
@@ -61,7 +61,7 @@
 
 			  	<blockquote>
 					  <p><%= c.content %></p>
-					  <footer>Написал <cite title="Source Title"><b><%= c.user.email if c.user %></b></cite>  <%= c.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
+					  <footer>Написал <cite title="Source Title"><b><%= c.user.nickname || c.user.email if c.user %></b></cite>  <%= c.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
 					
 						  <% if user_signed_in? && current_user.admin %>
 						    <div class="btn-group">

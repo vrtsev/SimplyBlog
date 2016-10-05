@@ -1,0 +1,18 @@
+<title>Изменение записи | SimplyBlog by Vadim</title>
+
+<%= simple_form_for(@diary) do |f| %>
+
+  <div class="field" >
+    <h3>Заголовок</h3>
+    <%= f.input :title, label: false, class: "form-control", placeholder: "Заголовок" %>
+  </div>
+
+  <div class="field">
+    <h3>Заметка</h3>
+    <%= f.input :content, as: :text, label: false, class: "form-control", placeholder: "Заметка..." %>
+  </div>
+  <br />
+  
+  <p class='btn btn-default'><%= link_to 'Отмена', diaries_path %></p>   <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %><br /><%= link_to "Удалить", diary_path(@diary) , method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger' %>
+  
+<% end %>

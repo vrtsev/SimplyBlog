@@ -23,7 +23,7 @@ class DiariesController < ApplicationController
 
     respond_to do |format|
       if @diary.save
-        format.html { redirect_to 'diaries/index', notice: 'Вы успешно создали запись в дневнике' }
+        format.html { redirect_to diaries_url, notice: 'Вы успешно создали запись в дневнике' }
         format.json { render :show, status: :created, location: @diary }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class DiariesController < ApplicationController
   def update
     respond_to do |format|
       if @diary.update(diary_params)
-        format.html { redirect_to @diary, notice: 'Запись удалена' }
+        format.html { redirect_to diaries_url, notice: 'Запись обновлена' }
         format.json { render :show, status: :ok, location: @diary }
       else
         format.html { render :edit }
@@ -51,7 +51,7 @@ class DiariesController < ApplicationController
   def destroy
     @diary.destroy
     respond_to do |format|
-      format.html { redirect_to diaries_url, notice: 'Diary was successfully destroyed.' }
+      format.html { redirect_to diaries_url, notice: 'Запись удалена' }
       format.json { head :no_content }
     end
   end
