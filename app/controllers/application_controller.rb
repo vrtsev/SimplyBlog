@@ -3,14 +3,7 @@ class ApplicationController < ActionController::Base
 
   around_action :with_time_zone, if: 'current_user.try(:time_zone)'
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-
   protected
-
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :photo, :photo_cache])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :photo, :photo_cache])
-    end
 
     def check_admin
       if current_user.admin
