@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="panel-body"><%= w.content %></div>
+      <div class="panel-body"><%= simple_format(w.content) %></div>
 
       <div class="panel-footer">
         <div class="row">
@@ -27,7 +27,7 @@
           <div class="col-md-3">
             <% if user_signed_in? && current_user.admin %>
 
-              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия &nbsp<span class="caret"></span>  </button>
+              <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия &nbsp<span class="caret"></span>  </button>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Новое', new_warning_path %></li>
                 <li><%= link_to 'Изменить', edit_warning_path(w) %></li>

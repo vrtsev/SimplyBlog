@@ -31,7 +31,7 @@
 
 		  	<% if user_signed_in? && current_user.admin %>
 
-			    	<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Запись <span class="caret"></span>  </button>
+			    	<button type="button" class="btn btn-xs btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Запись <span class="caret"></span>  </button>
 				 			 	  <ul class="dropdown-menu">
 				   				  <li><%= link_to 'Изменить', edit_post_path(@post) %></li>
 				 				    <li><%= link_to "Удалить пост", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
@@ -57,6 +57,14 @@
 		<div class="row">
 		  <div class="col-md-12" style="padding: 5%;">
 
+				<% if user_signed_in?%>                             
+					<%= render partial: 'comments/new_form' %>
+				<% else %>
+					<%= link_to "Зарегистрируйтесь", new_user_registration_path, class: 'btn btn-success' %> или <%= link_to "Войдите", new_user_session_path %> чтобы оставлять комментарии
+				<% end %>   
+
+				<hr>
+
 			  <% @post.comments.order('created_at DESC').each do |c| %>
 
 			  	<blockquote>
@@ -77,14 +85,8 @@
 
 					  </footer>
 					</blockquote>
-					<hr>
 			  <% end %>
 
-				<% if user_signed_in?%>                             
-					<%= render partial: 'comments/new_form' %>
-				<% else %>
-					<%= link_to "Зарегистрируйтесь", new_user_registration_path, class: 'btn btn-success' %> или <%= link_to "Войдите", new_user_session_path %> чтобы оставлять комментарии
-				<% end %>   
 
 		  </div>
 		</div>

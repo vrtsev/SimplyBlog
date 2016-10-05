@@ -16,11 +16,10 @@
           <a class="navbar-brand" href="/"><b>Simply</b>Blog by Vadim</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">        
+          <ul class="nav navbar-nav">
             <button id="sidebar-btn" type="button" class="btn btn-default" aria-label="Left Align">
               <span class="glyphicon glyphicon-menu-hamburger"></span>
-            </button>
-            &nbsp
+            </button>        
             <% if user_signed_in? %>
               <%= link_to "Создать запись", "#", class: "btn btn-info navbar-btn", id: "post_create", "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
               <%= link_to "Запись в дневник", "#", class: "btn btn-default navbar-btn", id: "diary_create", "data-toggle" => "modal", "data-target"=>"#newdiary_modal" %>
@@ -68,7 +67,7 @@
               <li><%= link_to "Войти", new_user_session_path %></li>
               <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Регистрация", new_user_registration_path %></button></li>
             <% else %>
-
+            &nbsp
             <% if user_signed_in? && current_user.admin %>
               <%= link_to "Админ-панель", "/admins/index", class: "btn btn-danger navbar-btn" %>
             <% end %>
