@@ -1,4 +1,4 @@
-<title><%= Регистрация | SimplyBlog by Vadim %></title>
+<title><%= "Регистрация | SimplyBlog by Vadim" %></title>
 
 <div class="panel panel-default">
   <div class="panel-body">
@@ -36,14 +36,6 @@
           </div>
           <% end %>
           <br />
-          <div class="field">
-            <h3>Фото профиля</h3>
-            <%= f.file_field :photo, class: "form-control", size: "50x1" %>
-            <%= f.hidden_field :photo_cache %>
-          </div>
-          <br />
-          <br />
-
 
           <div class="actions">
             <p class='btn btn-default'><%= link_to 'Отмена', root_path %></p>
