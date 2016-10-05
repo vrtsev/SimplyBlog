@@ -65,10 +65,15 @@
 
 				<hr>
 
+				<% if @post.comments.count == 0 %>
+					<br />
+					<p style="text-align: center"> Никто не прокомментировал эту запись <p>
+				<% end %>
+
 			  <% @post.comments.order('created_at DESC').each do |c| %>
 
 			  	<blockquote>
-					  <p><%= c.content %></p>
+					  <p><%= simple_format(c.content) %></p>
 					  <footer>Написал <cite title="Source Title"><b><%= c.user.nickname || c.user.email if c.user %></b></cite>  <%= c.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
 					
 						  <% if user_signed_in? && current_user.admin %>
