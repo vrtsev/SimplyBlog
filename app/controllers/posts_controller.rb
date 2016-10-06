@@ -17,9 +17,10 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/new
-  def new
-    @post = Post.new
-  end
+  # Этот метод отдельно вынесен в паршиал, чтобы к нему был доступ через модальное окно
+  # def new
+  #   @post = Post.new
+  # end
 
   # GET /posts/1/edit
   def edit
@@ -75,6 +76,10 @@ class PostsController < ApplicationController
 
   def my_posts
     @my_posts = current_user.posts
+  end
+
+  def my_comments
+    @my_comments = current_user.comments
   end
 
   def about

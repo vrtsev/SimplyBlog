@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
 
-    <h2>Профиль пользователя <b><%= current_user.email %></b></h2>
+    <h2>Профиль пользователя <b><%= current_user.nickname || current_user.email %></b></h2>
     <hr>
 
     <div class="row">

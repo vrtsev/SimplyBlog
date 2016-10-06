@@ -20,18 +20,18 @@
 		</div>
 
   </div>
-  <div class="panel-body"><p><%= @post.content %></p></div>
+  <div class="panel-body"><p><%= simple_format(@post.content) %></p></div>
   <div class="panel-footer">
   
 		<div class="row">
-		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= if @post.user; link_to @post.user.email; else; "Польз. удален"; end  %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
+		  <div class="col-md-8"><p class="text-justify"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= if @post.user; link_to @post.user.nickname || @post.user.email; else; "Польз. удален"; end  %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %></p></div>		  
 		  <div class="col-md-2"></div>
 		  <div class="col-md-2">
 
 
 		  	<% if user_signed_in? && current_user.admin %>
 
-			    	<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Запись <span class="caret"></span>  </button>
+			    	<button type="button" class="btn btn-xs btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Запись <span class="caret"></span>  </button>
 				 			 	  <ul class="dropdown-menu">
 				   				  <li><%= link_to 'Изменить', edit_post_path(@post) %></li>
 				 				    <li><%= link_to "Удалить пост", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
@@ -57,11 +57,24 @@
 		<div class="row">
 		  <div class="col-md-12" style="padding: 5%;">
 
-			  <% @post.comments.each do |c| %>
+				<% if user_signed_in?%>                             
+					<%= render partial: 'comments/new_form' %>
+				<% else %>
+					<%= link_to "Зарегистрируйтесь", new_user_registration_path, class: 'btn btn-success' %> или <%= link_to "Войдите", new_user_session_path %> чтобы оставлять комментарии
+				<% end %>   
+
+				<hr>
+
+				<% if @post.comments.count == 0 %>
+					<br />
+					<p style="text-align: center"> Никто не прокомментировал эту запись <p>
+				<% end %>
+
+			  <% @post.comments.order('created_at DESC').each do |c| %>
 
 			  	<blockquote>
-					  <p><%= c.content %></p>
-					  <footer>Написал <cite title="Source Title"><b><%= c.user.email if c.user %></b></cite>  <%= c.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
+					  <p><%= simple_format(c.content) %></p>
+					  <footer>Написал <cite title="Source Title"><b><%= c.user.nickname || c.user.email if c.user %></b></cite>  <%= c.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
 					
 						  <% if user_signed_in? && current_user.admin %>
 						    <div class="btn-group">
@@ -77,14 +90,8 @@
 
 					  </footer>
 					</blockquote>
-					<hr>
 			  <% end %>
 
-				<% if user_signed_in?%>                             
-					<%= render partial: 'comments/new_form' %>
-				<% else %>
-					<%= link_to "Зарегистрируйтесь", new_user_registration_path, class: 'btn btn-success' %> или <%= link_to "Войдите", new_user_session_path %> чтобы оставлять комментарии
-				<% end %>   
 
 		  </div>
 		</div>

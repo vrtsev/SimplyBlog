@@ -26,14 +26,14 @@
 
   </div>
   <div class="panel-body">
-    <%= post.content %>
+    <%= simple_format(post.content) %>
   </div>
 <div class="panel-footer"> 
 
 <div class="row">
   <div class="col-md-4">
 
-    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= if post.user; link_to post.user.email; else; "Польз. удален"; end %>
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> от <%= if post.user; link_to post.user.nickname || post.user.email; else; "Польз. удален"; end %>
 
   </div>
   <div class="col-md-1"></div>

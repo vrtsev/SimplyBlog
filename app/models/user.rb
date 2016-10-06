@@ -5,8 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
-  has_many :comments
+  has_many :comments  
+  has_many :diaries
 
 	validates :email, presence: true
 	validates :encrypted_password, presence: true
+
 end

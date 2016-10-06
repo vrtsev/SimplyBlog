@@ -18,7 +18,7 @@
 
 switcher = false
 
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
 
 
 	if (switcher === true) {
@@ -42,6 +42,7 @@ $(document).on('turbolinks:load', function() {
 	$('#post_create').on('shown.bs.modal', function () {
 	  $('#myInput').focus()
 	})
+  
 
 	$('#sidebar-btn').click(function(){
 

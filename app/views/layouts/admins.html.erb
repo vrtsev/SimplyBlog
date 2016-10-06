@@ -18,13 +18,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><b>Simply</b>Blog by Vadim</a>
+        <a class="navbar-brand" href="/"><b>Simply</b>Blog | Администрирование</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">        
           <% if user_signed_in? %>
             <% if user_signed_in? && current_user.admin %>
               <%= link_to "На сайт", root_path, class: "btn btn-success navbar-btn" %>
+              <%= link_to "Обьявление", new_warning_path, class: "btn btn-default navbar-btn" %>
             <% end %>
           <% end %>        
         </ul>
@@ -62,13 +63,13 @@
         </ul>
       </div>
 
-      <div class="col-md-7" style="padding: 35px;">
+      <div class="col-md-8" style="padding: 35px;">
         <body>
           <%= yield %>
         </body>
       </div>
 
-      <div class="col-md-2" style="padding: 4px">
+      <div class="col-md-1" style="padding: 4px">
       </div>
 
     </div>
