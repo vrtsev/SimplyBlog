@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  require 'json'
+
 
   skip_before_action :verify_authenticity_token
   before_action :set_post, only: [:show, :edit, :update, :destroy]
@@ -7,6 +9,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @pub_warnings = Warning.all
     @posts = Post.all.order('created_at DESC')
   end
 

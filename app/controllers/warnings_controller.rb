@@ -1,7 +1,7 @@
 class WarningsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
-  before_action :set_warning, only: [:show, :edit, :update, :destroy]
+  before_action :set_warning, only: [:show, :edit, :set_public, :update, :destroy]
   before_action :authenticate_user!, :check_admin
 
   # GET /warnings
@@ -23,6 +23,13 @@ class WarningsController < ApplicationController
   # GET /warnings/1/edit
   def edit
   end
+
+  def set_public
+    @warning.publ
+    @warning.save
+    redirect_to root_path
+  end
+
 
   # POST /warnings
   # POST /warnings.json

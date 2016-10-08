@@ -1,4 +1,4 @@
-<% Warning.all.each do |w| %>
+<% @pub_warnings.each do |w| %>
 
   <% if w.public %>
 
@@ -33,6 +33,7 @@
                 <li><%= link_to 'Изменить', edit_warning_path(w) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "Удалить обьявление", warning_path(w), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
+                <li><%= link_to "Сделать публичным/Скрыть", set_public_warning_path(w), method: :put, data: { confirm: "Данное предупреждение будет публично размещено на сайте. Продолжить?" }, class: "text-warning" %></li>
               </ul>
             <% end %>
           </div>

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/my_comments', to: 'posts#my_comments'
   get '/about', to: 'posts#about'
   scope 'admins' do
-    resources :warnings
+    resources :warnings do 
+      put :set_public, on: :member
+    end
   end
 
   get ':controller(/:action(/:id))'

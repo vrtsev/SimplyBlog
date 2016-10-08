@@ -35,8 +35,6 @@
 				 			 	  <ul class="dropdown-menu">
 				   				  <li><%= link_to 'Изменить', edit_post_path(@post) %></li>
 				 				    <li><%= link_to "Удалить пост", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
-				  				  <li role="separator" class="divider"></li>
- 				   				  <li><%= link_to "Лайки", posts_path %></li>
 				  				</ul>
 			 
 
