@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -17,9 +17,10 @@ gem 'json'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
-  gem 'byebug', platform: :mri
-  require 'byebug'
+  gem 'byebug'
   gem 'pry'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 	gem 'wdm', '>= 0.1.0'
 end
 

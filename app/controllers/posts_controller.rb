@@ -7,8 +7,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    # byebug
     @pub_warnings = Warning.all
-    byebug
     @posts = Post.all.order('created_at DESC')
     logger.info "Showing public warnings and Posts in DESC order"
   end
