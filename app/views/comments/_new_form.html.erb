@@ -2,7 +2,7 @@
 
 <%= simple_form_for [@post, @post.comments.build] do |f| %>
 
-  <div class="field"><%= f.input :content, as: :text, label: false, hint: 'Оскорбительная речь, спам и флуд будут удалены', class: "form-control", placeholder: "Ваш комментарий..." %></div>
-	<div class="actions"><%= button_to "Создать", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-success' %></div>
+  <div class="field"><%= f.input :content, as: :text, label: false, hint: 'Оскорбительная речь, спам и флуд будут удалены', class: "form-control", id: "comment_content", placeholder: "Ваш комментарий..." %></div>
+	<div class="actions"><%= button_to "Отправить", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-success', id: "comment_create_button" %></div>
 
 <% end %>

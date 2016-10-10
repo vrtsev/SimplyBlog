@@ -10,7 +10,7 @@ RSpec.describe History do
 
 	it "should increment with data if user visit admin-panel" do
 		History.register(user_id: @u.id)
-		expect(@h.last.user_id).to eq(@u.id)
+		expect(@h.last).to eq(@u.id)
 	end
 	
 end

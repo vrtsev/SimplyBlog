@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get '/users', to: 'admins#users'
     get '/history', to: 'admins#history'
     delete '/history/clear', to: 'admins#clear_history'
+    delete '/posts/:id', to: 'admins#post_destroy'
     resources :warnings do 
       put :set_public, on: :member
     end

@@ -2,12 +2,11 @@ class PostsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin, except: [:index, :create, :show, :about]
+  before_action :check_admin, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    # byebug
     @pub_warnings = Warning.all
     @posts = Post.all.order('created_at DESC')
     logger.info "Showing public warnings and Posts in DESC order"
