@@ -20,6 +20,8 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rails-controller-testing'
+  gem 'capybara'
   gem 'factory_girl_rails'
 	gem 'wdm', '>= 0.1.0'
 end
