@@ -26,7 +26,10 @@ class AdminsController < ApplicationController
   private
 
     def register
-      History.register(user_id: current_user.id, action: action_name)
+      unless History.last
+        History.create(user_id: 1, action: "clear_history")
+      else
+        History.register(user_id: current_user.id, action: action_name) unless History.last.action == action_name
+      end
     end
-
 end
