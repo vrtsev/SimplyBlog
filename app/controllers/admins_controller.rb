@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   # before_action :set_admin, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :check_admin, :register
+  before_action :authenticate_user!, :register
+  before_action :check_admin, only: [:clear_history]
 
   def index
   end

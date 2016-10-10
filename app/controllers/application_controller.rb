@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     def check_admin
       if current_user.admin
       else
-        redirect_to 'posts/index'
+        redirect_to root_path, notice: 'У Вас нет прав доступа к данной функции'
       end
     end
 
