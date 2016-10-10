@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+  <li><a href="/">SimpleBlog</a></li>
+  <li><a href="/admins/index">Админ-панель</a></li>
+  <li class="active">История</li>
+</ol>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"> Вся зарегистрированная активность в админ-панели</div>
+  <div class="panel-body">
+
+
+		<table class="table table-striped">
+		  <tr>
+			  <th >№</th>
+			  <th >Пользователь:</th>
+			  <th >Зарегистрирован:</th>
+			</tr>
+				<tr>
+		<% @history.each do |h| %>
+				<tr>
+				  <td><%= h.id %></td>
+				  <td><%= h.user_id %></td>
+				  <td><%= h.created_at %></td>
+		<% end %>
+				</tr>
+		</table>
+
+
+	</div>
+</div>

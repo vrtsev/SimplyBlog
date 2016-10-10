@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get '/my_comments', to: 'posts#my_comments'
   get '/about', to: 'posts#about'
   scope 'admins' do
+    get '/index', to: 'admins#index'
+    get '/posts', to: 'admins#posts'
+    get '/users', to: 'admins#users'
+    get '/history', to: 'admins#history'
     resources :warnings do 
       put :set_public, on: :member
     end

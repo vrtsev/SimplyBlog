@@ -2,8 +2,11 @@ class History < ApplicationRecord
 
 	belongs_to :user
 
-	def register
-		h = self.new(params.require(:history).permit(:user_id))
-		h.save
+	def self.register(params)
+		h = self.new(params)
+		if h.save
+	    logger.info "[AdminControl] User : #{h.user_id} has been registered to history"
+	  end
+	end
 
 end
