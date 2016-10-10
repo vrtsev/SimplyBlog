@@ -1,9 +1,9 @@
-require "rails_helper"
+# require "rails_helper"
 
-RSpec.describe "Home page", type: :feature do 
+# RSpec.describe "Home page", type: :feature do 
 
-	it "contains post" do
-		pending
-	end
+# 	it "contains post" do
+# 		pending
+# 	end
 
-end
+# end

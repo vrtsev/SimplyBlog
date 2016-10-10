@@ -14,13 +14,18 @@ class AdminsController < ApplicationController
   end
 
   def history
-    @history = History.all
+    @history = History.limit(10).order('created_at DESC')
+  end
+
+  def clear_history
+    @history = History.destroy_all
+    redirect_to action: "history"
   end
 
   private
 
     def register
-      History.register(user_id: current_user.id)
+      History.register(user_id: current_user.id, action: action_name)
     end
 
 end
