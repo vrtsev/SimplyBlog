@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010112043) do
+ActiveRecord::Schema.define(version: 20161010201603) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "privilege"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20161010112043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "action"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
