@@ -37,7 +37,7 @@
 
   </div>
   <div class="col-md-1"></div>
-  <div class="col-md-4" align='right'><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= link_to "Мне нравится", post_likes_path(post) %> <span class="badge"><%= post.likes %></span></div>
+  <div class="col-md-4" align='right'><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= link_to "Мне нравится", post_likes_path(post) %> <span class="badge"><%= post.likes %></span> </div>
   <div class="col-md-3"><%= link_to "Комментарии", post_path(post)%> <span class="badge"><%= post.comments.count %></span></div>
 </div>
 
