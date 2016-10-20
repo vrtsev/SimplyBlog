@@ -19,7 +19,7 @@
 
 var layout = angular.module("layoutApp", []);
 layout.controller("layoutCtrl", function ($scope) {
-	$scope.peremennaya = "OLOLO";
+	$scope.peremennaya = "ANGULAR TEST";
 });
 
 
