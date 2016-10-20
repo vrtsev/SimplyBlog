@@ -1,19 +1,24 @@
-# SimplyBlog by Vadim Ryazantsev
+# README
 
-Сайт на heroku : https://vadim-simplyblog.herokuapp.com/about
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Данный блог является моей первой разработкой с использованием Ruby on Rails. На текущий момент блог полностью функционален, не имеет неисправностей.
+Things you may want to cover:
 
-Ruby version: 2.3.0
-Rails : 5.0.1
+* Ruby version
 
-# Краткое описание возможностей и функций:
-* Регистрация пользователей (Gem 'devise', отредактированы шаблоны гема под общую стилистику сайта)
-* Создание\редактирование\удаление постов
-* Возможность оставлять комментарии к постам
-* Минимальный дизайн сайта (Gem "Bootstrap")
-* Админ-панель
+* System dependencies
 
-Автор : Vadim Ryazantsev
+* Configuration
 
-Vk : https://vk.com/v.rtsev
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
