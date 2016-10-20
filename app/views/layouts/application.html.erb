@@ -24,40 +24,6 @@
               <%= link_to "Создать запись", "#", class: "btn btn-info navbar-btn", id: "post_create", "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
               <%= link_to "Запись в дневник", "#", class: "btn btn-default navbar-btn", id: "diary_create", "data-toggle" => "modal", "data-target"=>"#newdiary_modal" %>
 
-              <!-- Modal for new post-->
-              <div class="modal fade" id="newpost_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Создание новой записи</h4>
-                    </div>
-                    <div class="modal-body">
-                      <%= render :partial => 'posts/new' %>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-              <!-- Modal for new diary post-->
-              <div class="modal fade" id="newdiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Новая запись в дневник</h4>
-                    </div>
-                    <div class="modal-body">
-                      <%= render :partial => 'diaries/new' %>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-
-
-
             <% end %>
           </ul>
 
@@ -86,7 +52,36 @@
       </div>
     </nav>
 
+    <!-- Modal for new post-->
+    <div class="modal fade" id="newpost_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalPostCreate">Создание новой записи</h4>
+          </div>
+          <div class="modal-body">
+            <%= render :partial => 'posts/new' %>
+          </div>
+                    
+        </div>
+      </div>
+    </div>
 
+    <!-- Modal for new diary post-->
+    <div class="modal fade" id="newdiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalDiaryCreate">Новая запись в дневник</h4>
+          </div>
+          <div class="modal-body">
+            <%= render :partial => 'diaries/new' %>
+          </div>       
+        </div>
+      </div>
+    </div>
 
     <!-- Тело сайта -->
     <div class="container">

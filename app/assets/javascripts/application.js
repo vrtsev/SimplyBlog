@@ -34,21 +34,13 @@ $(document).on('turbolinks:load', function() {
 		$('#content_row').attr("class", "col-md-9");
 	};
 
-	$(function () {
-	  $('[data-toggle="tooltip"]').tooltip()
-	})
-
-	$(function () {
-	  $('[data-toggle="popover"]').popover()
-	})
-
-	$('#myModal').on('shown.bs.modal', function () {
-	  $('#myInput').focus()
-	})
-
 	$('#post_create').on('shown.bs.modal', function () {
 	  $('#myInput').focus()
-	})
+	});
+
+	$('#diary_create').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	});
 
 	$('#sidebar-btn').click(function(){
 
