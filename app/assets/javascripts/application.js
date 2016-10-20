@@ -13,8 +13,15 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require angular
 //= require turbolinks
 //= require_tree .
+
+var layout = angular.module("layoutApp", []);
+layout.controller("layoutCtrl", function ($scope) {
+	$scope.peremennaya = "OLOLO";
+});
+
 
 switcher = false
 

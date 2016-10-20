@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @pub_warnings = Warning.all
     @posts = Post.all.order('created_at DESC')
     logger.info "Showing public warnings and Posts in DESC order"
+    # NewUserMailer.welcome_email.deliver_now
   end
 
   # GET /posts/1
