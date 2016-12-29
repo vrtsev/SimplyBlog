@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  root "posts#index"
+
+  devise_for :users
 
   resources :diaries
-  # resources :warnings
-	root "posts#index"
   resources :posts do
-  	resources :comments
-  	get :likes
+    resources :comments
   end
-  resources :diaries 
-  devise_for :users
+
   get '/my_posts', to: 'posts#my_posts'
   get '/my_comments', to: 'posts#my_comments'
   get '/about', to: 'posts#about'
@@ -23,7 +22,4 @@ Rails.application.routes.draw do
       put :set_public, on: :member
     end
   end
-
-  # get ':controller(/:action(/:id))'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

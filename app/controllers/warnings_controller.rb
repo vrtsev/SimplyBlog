@@ -1,28 +1,18 @@
 class WarningsController < ApplicationController
-
-  skip_before_action :verify_authenticity_token
   before_action :set_warning, only: [:show, :edit, :set_public, :update, :destroy]
   before_action :authenticate_user!, :check_admin
 
-  # GET /warnings
-  # GET /warnings.json
   def index
     @warnings = Warning.all
   end
 
-  # GET /warnings/1
-  # GET /warnings/1.json
-  def show
-  end
+  def show; end
 
-  # GET /warnings/new
   def new
     @warning = Warning.new
   end
 
-  # GET /warnings/1/edit
-  def edit
-  end
+  def edit; end
 
   def set_public
     @warning.publ
@@ -30,12 +20,8 @@ class WarningsController < ApplicationController
     redirect_to root_path
   end
 
-
-  # POST /warnings
-  # POST /warnings.json
   def create
     @warning = Warning.new(warning_params)
-
     respond_to do |format|
       if @warning.save
         format.html { redirect_to "/admins/index", notice: 'Warning was successfully created.' }
@@ -47,8 +33,6 @@ class WarningsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /warnings/1
-  # PATCH/PUT /warnings/1.json
   def update
     respond_to do |format|
       if @warning.update(warning_params)
@@ -61,8 +45,6 @@ class WarningsController < ApplicationController
     end
   end
 
-  # DELETE /warnings/1
-  # DELETE /warnings/1.json
   def destroy
     @warning.destroy
     respond_to do |format|
@@ -72,13 +54,12 @@ class WarningsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_warning
-      @warning = Warning.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def warning_params
-      params.require(:warning).permit(:title, :content, :public)
-    end
+  def set_warning
+    @warning = Warning.find(params[:id])
+  end
+
+  def warning_params
+    params.require(:warning).permit(:title, :content, :public)
+  end
 end
