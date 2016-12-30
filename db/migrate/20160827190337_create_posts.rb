@@ -3,8 +3,9 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.string :title
       t.text :content
-      t.integer :user_id
-
+      t.boolean :pin
+      t.belongs_to :user
+      t.belongs_to :category
       t.timestamps
     end
   end

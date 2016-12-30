@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'simple_form'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'pry'
@@ -27,7 +29,4 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :production do
 end

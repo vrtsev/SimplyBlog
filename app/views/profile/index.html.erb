@@ -46,7 +46,7 @@
           </div>
 
           <div style="padding: 5px;" class="col-md-10 col-sm-10">
-            <b><%= link_to post.title, post_path(post), style: 'color: black;' %></b>
+            <b><%= link_to post.title, profile_post_path(@user, post), style: 'color: black;' %></b>
             <%= simple_format(post.content[0..140]) %>
             <div style='color: grey;'>
               <span class="glyphicon glyphicon-comment" aria-hidden="true"> <%= post.comments.length %></span> 
@@ -67,8 +67,7 @@
   <div class="jumbotron">
     <center>
       <h1>Нет записей</h1>
-      <p>Вы пока-что не создавали записей в Вашем блоге. Давайте ее создадим</p>
-      <%= link_to 'Создать запись', '', class: 'btn btn-success btn-lg', "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
+      <p>Пользователь не создавал записей в своем блоге</p>
     </center>
   </div>
 <% end %>

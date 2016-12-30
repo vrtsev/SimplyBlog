@@ -1,0 +1,35 @@
+<div id="sidebar" class="col-md-12">
+
+  <% if params[:controller] == 'profile' %>
+    <div class='panel panel-default' style='padding: 2%;'>
+      <% if user.photo.present? %>
+        <img src='<%= user.photo %>' style='width: 100%'/>
+      <% else %>
+        <img src='https://vk.com/images/camera_200.png' style='width: 100%'/>
+      <% end %>
+      <div style='text-align: center;'>
+        <span style='font-size: x-large;'><b><%= user.name %></b></span><br>
+        <span style='color: grey;'>Был в сети <%= user.last_sign_in_at.strftime('%d.%m.%y') %></span>
+      </div>
+    </div>
+
+    <% if user.categories.any? %>
+      <h4 style='text-align: center;'><b>Категории пользователя</b></h4>
+        <ul class="list-group">
+        <%= link_to 'Все записи', profile_path(user), class: 'list-group-item' %>
+        <% user.categories.each do |c| %>
+          <%= link_to c.name, category_path(c, user: user), class: 'list-group-item' if c.try(:id) %>
+        <% end %>
+      </ul>
+    <% end %>
+  <% elsif user_signed_in? && params[:controller] == 'posts' %>
+    <%= render partial: 'layouts/application/user_block', locals: {user: current_user} %>
+    <ul class="list-group">
+      <a href="/categories/new" class="list-group-item"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Новая категория</a>
+      <%= link_to 'Все записи', posts_path, class: 'list-group-item' %>
+      <% current_user.categories.each do |c| %>
+        <%= link_to c.name, category_path(c), class: 'list-group-item' if c.try(:id) %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

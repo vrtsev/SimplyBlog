@@ -1,8 +1,9 @@
-<h2>Комментировать </h2>
-
 <%= simple_form_for [@post, @post.comments.build] do |f| %>
-
-  <div class="field"><%= f.input :content, as: :text, label: false, hint: 'Оскорбительная речь, спам и флуд будут удалены', class: "form-control", id: "comment_content", placeholder: "Ваш комментарий..." %></div>
-	<div class="actions"><%= button_to "Отправить", { action: "create" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-success', id: "comment_create_button" %></div>
-
+  <div class="field">
+    <%= f.input :content, as: :text, label: false, class: "form-control", id: "comment_content", placeholder: "Ваш комментарий..." %>
+  </div>
+	<div class="actions">
+    <%= link_to 'Отмена', '', class: 'btn btn-default' %>
+    <%= f.submit 'Отправить', class: 'btn btn-success' %>
+  </div>
 <% end %>

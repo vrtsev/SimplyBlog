@@ -1,0 +1,30 @@
+<title><%= @cat.name %> | SimplyBlog</title>
+
+<% @posts.each do |post| %>
+
+  <div class="alert alert-warning" role="alert" style="padding: 0; margin-bottom: 3px; border: 1px solid #DEDEDE; border-left-color: orange;
+  border-left-width: 5px; border-radius: 3px; margin-bottom: 3px;">
+    <div class="row">
+      <div class="col-md-2 col-sm-2">
+        <center>
+          <h5 style='margin-bottom: 0;'><%= post.created_at.strftime("%a") %></h5>
+          <h2 style='margin: 0;'><b><%= post.created_at.strftime("%e") %></b></h2>
+          <h5 style='margin-top: 5px;'><%= post.created_at.strftime("%H:%M") %></h5>
+        </center>
+      </div>
+
+      <div style="padding: 5px;" class="col-md-10 col-sm-10">
+        <b><%= link_to post.title, post_path(post), style: 'color: black;' %></b>
+        <%= simple_format(post.content[0..140]) %>
+        <div style='color: grey;'>
+          <span class="glyphicon glyphicon-comment" aria-hidden="true"> <%= post.comments.length %></span> 
+          <span class="glyphicon glyphicon-tag" aria-hidden="true">
+            <% post.tags.limit(5).each do |t| %>
+              <%= link_to t.name, posts_path(tag: t.name) if t.present? %>;
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin, only: [:edit, :update, :destroy]
 
   def index
-    @pub_warnings = Warning.all
-    @posts = Post.all.order('created_at DESC')
-    logger.info "Showing public warnings and Posts in DESC order"
+    @posts = current_user.posts.desc.paginate \
+      :page => params[:page],
+      :per_page => 10
+    @post_groups = @posts.group_by {|p| p.created_at.to_date}
+    @pinned_posts = current_user.posts.where(pin: true).limit(2)
   end
 
   def show
@@ -16,67 +18,26 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Вы успешно создали сообщение' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    render :new unless @post.save
+    redirect_to @post
   end
 
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Вы успешно обновили сообщение' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    render :edit unless @post.update(post_params)
+    redirect_to @post
   end
 
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Пост был удален' }
-      format.json { head :no_content }
-    end
-  end
-
-  def likes
-    @post = Post.find(params[:post_id])
-    @post.increment!(:likes)
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Вы оценили запись' }
-    end
-  end
-
-  def my_posts
-    @my_posts = current_user.posts
-  end
-
-  def my_comments
-    @my_comments = current_user.comments
-  end
-
-  def about
-    @r = rand(1..2) # => 22
-    render action: "about_site", layout: "about"
+    redirect_to posts_url if @post.destroy
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :likes)
+    params.require(:post).permit(:title, :content, :tag_list, :category_id, :pin)
   end
-
 end

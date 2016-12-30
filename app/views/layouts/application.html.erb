@@ -1,145 +1,31 @@
 <!DOCTYPE html>
-<html ng-app="layoutApp">
+<html>
   <head>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body ng-controller="layoutCtrl">
+  <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/"><b>Simply</b>Blog by Vadim</a>
+    <%= render partial: 'layouts/application/navbar' %>
+    <%= render partial: 'layouts/application/modal' if user_signed_in? %>
+
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-1'></div>
+        <div class='col-md-3'>
+          <%= render partial: 'layouts/application/sidebar', locals: {user: @user} %>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-              <button id="sidebar-btn" type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
-              </button>        
-              <%= link_to "Создать запись", "#", class: "btn btn-info navbar-btn", id: "post_create", "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
-              <%= link_to "Запись в дневник", "#", class: "btn btn-default navbar-btn", id: "diary_create", "data-toggle" => "modal", "data-target"=>"#newdiary_modal" %>
-
-            <% end %>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-
-            <% unless user_signed_in? %>
-              <li><%= link_to "Войти", new_user_session_path %></li>
-              <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Регистрация", new_user_registration_path %></button></li>
-            <% else %>
-            &nbsp
-            <% if user_signed_in? && current_user.admin %>
-              <%= link_to "Админ-панель", "/admins/index", class: "btn btn-danger navbar-btn" %>
-            <% end %>
-
-            <li class="dropdown">
-
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вы вошли как <b><%= current_user.nickname || current_user.email %></b> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Моя страница", edit_user_registration_path(current_user) %></li>
-                <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
-              </ul>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Modal for new post-->
-    <div class="modal fade" id="newpost_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="modalPostCreate">Создание новой записи</h4>
-          </div>
-          <div class="modal-body">
-            <%= render :partial => 'posts/new' %>
-          </div>
-                    
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for new diary post-->
-    <div class="modal fade" id="newdiary_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="modalDiaryCreate">Новая запись в дневник</h4>
-          </div>
-          <div class="modal-body">
-            <%= render :partial => 'diaries/new' %>
-          </div>       
-        </div>
-      </div>
-    </div>
-
-    <!-- Тело сайта -->
-    <div class="container">
-      <div class="row">
-
-        <div id="sidebar_row" class="col-md-3" >
-
-          <!-- Сайдбар -->
-          <div id="sidebar" class="col-md-12">
-
-            <a href="/" class="list-group-item active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Главная</a>
-            <ul class="list-group">
-            <!-- Если залогинен -->
-              <% if user_signed_in? %>
-                <% if current_user.posts.count > 0 %>
-                  <a href="/my_posts" class="list-group-item">Мои публикации<span class="badge"><%= current_user.posts.count %></span></a>
-                <% end %>
-                <% if current_user.comments.count > 0 %>
-                  <a href="/my_comments" class="list-group-item">Комментарии<span class="badge"><%= current_user.comments.count %></span></a>
-                <% end %>
-                <a href="/diaries" class="list-group-item">Дневник</a> 
-                <a href="/users/edit" class="list-group-item">Профиль</a>
-              <% end %>
-            </ul>
-            <!-- Конец логин-бара -->
-            <ul class="list-group">
-              <a href="http://vk.com/v.rtsev" class="list-group-item">Поддержка</a>
-              <a href="/about" class="list-group-item">О сайте</a>
-            </ul>
-          </div>
-          <!-- Конец сайдбара -->
-
-        </div>
-
-        <div id="content_row" class="col-md-7" style="padding: 35px;">
-
-        <% if user_signed_in? %>
-          <% if current_user.posts.count == 0 && current_user.comments.count == 0 %>
-            <div class="alert alert-info" role="alert">Рады Вас приветствовать на нашем сайте. Начните с создания своей новой записи, или прокомментируйте записи других пользователей. Расскажите всем о Вашем сегодняшнем дне</div>
-          <% end %>
-        <% end %>
-
+        <div class='col-md-6'>
           <%= yield %>
-         
         </div>
-
-        <div class="col-md-2" style="padding: 4px">
-        </div>
-
+        <div class='col-md-2'></div>
       </div>
+
+      <hr>
+      <p class="text-muted; text-center"><b>SimplyBlog</b>, 2016. All rights reserved. Created by <b>Vadim</b> on RoR </p>
+      <br />
     </div>
-    <!-- Конец тела сайта -->
-
-    <hr>
-    <p class="text-muted; text-center"><b>SimplyBlog</b>, 2016. All rights reserved. Created by <b>Vadim</b> on RoR </p>
-    <br />
-
-
-  	</div>
   </body>
 </html>

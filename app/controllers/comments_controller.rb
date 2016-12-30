@@ -1,62 +1,33 @@
 class CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token
-
-	def new
-		@comment = Comment.new
-	end
+  before_action :set_post
 
   def edit
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
   end
 
-	def create
-		@post = Post.find(params[:post_id])
+  def create
     @comment = @post.comments.build(params[:comment].permit(:content))
     @comment.user_id = current_user.id
-    @comment.save!
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @post, notice: 'Вы успешно создали комментарий' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    render :new unless @comment.save
+    redirect_to profile_post_path(@post.user, @post)
   end
 
   def update
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-
-    respond_to do |format|
-      if @comment.update_attributes(comment_params)
-        format.html { redirect_to @post, notice: 'Вы успешно обновили комментарий' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    render :edit unless @comment.update_attributes(comment_params)
+    redirect_to @post
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    @comment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to @post, notice: 'Комментарий был удален' }
-      format.json { head :no_content }
-    end
+    redirect_to @post if @comment.destroy
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
 
   def comment_params

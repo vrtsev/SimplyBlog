@@ -1,56 +1,42 @@
-<title><%= "Регистрация | SimplyBlog by Vadim" %></title>
+<title><%= "Регистрация | SimplyBlog" %></title>
 
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
 
-    <h2>Регистрация нового пользователя</h2>
-    <hr>
+    <div class="panel panel-default">
+      <div class="panel-body">
 
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-9">
+        <h2>Регистрация нового пользователя</h2>
+        <hr>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= devise_error_messages! %>
-          <div class="field">
-            <h3>Ваше имя</h3>
-            <%= f.text_field :nickname, autofocus: true, class: "form-control", size: "50x1" %>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-9">
+
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= f.error_notification %>
+              <div class="form-inputs">
+                <%= f.input :name, required: true, autofocus: true, label: 'Ваше имя' %>
+                <%= f.input :email, required: true %>
+                <%= f.input :password, label: 'Пароль', required: true, hint: ("#{@minimum_password_length} исмволов минимум" if @minimum_password_length) %>
+                <%= f.input :password_confirmation, label: 'Подтверждение пароля', required: true %>
+                <%= f.input :photo, label: 'Ссылка на фото' %>
+              </div>
+
+              <br>
+              <div class="form-actions">
+                <%= f.button :submit, "Продолжить", class: 'btn btn-success', style: 'float: right;' %>
+              </div>
+            <% end %>
+
           </div>
-
-          <div class="field">
-            <h3>E-mail</h3>
-            <%= f.email_field :email, class: "form-control", placeholder: "example@mail.com", size: "50x1" %>
-          </div>
-
-          <div class="field">
-            <h3>Пароль</h3>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> символов минимум)</em>
-              <br />
-              <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "Пароль...", size: "50x1" %>
-          </div>
-
-          <div class="field">
-            <h3>Подтверждение пароля</h3>
-            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Повторный пароль...", size: "50x1" %>
-          </div>
-          <% end %>
-          <br />
-
-          <div class="actions">
-            <p class='btn btn-default'><%= link_to 'Отмена', root_path %></p>
-            <%= f.submit "Зарегистрироваться", class: 'btn btn-success'%>
-          </div>
-          <br />
-
-          Есть аккаунт? <%= render "devise/shared/links" %>
-          <br />
-          
-        <% end %>
+          <div class="col-md-3"></div>
+        </div>
 
       </div>
-      <div class="col-md-3"></div>
     </div>
 
   </div>
+  <div class="col-md-3"></div>
 </div>

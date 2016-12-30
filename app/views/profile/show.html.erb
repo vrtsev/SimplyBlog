@@ -1,0 +1,48 @@
+<title><%= @post.title %> | SimplyBlog by Vadim</title>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <b><%= @post.title %></b>
+  </div>
+  <div class="panel-body">
+    <p><%= simple_format(@post.content) %></p>
+  </div>
+  <div class="panel-footer">
+    <p class="text-justify">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to @post.user.name, profile_path(@post.user) %> &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= @post.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
+    </p>
+  </div>
+</div>
+
+<div class='panel panel-default' style='padding: 2%;'>
+  <% if user_signed_in? %>
+    <div id='new-post-form'>
+      <%= render partial: 'comments/new_form' %>
+    </div>
+    <hr>
+  <% end %>
+  <% if @post.comments.length == 0 %>
+    <br />
+    <p style="text-align: center"> Никто не прокомментировал эту запись <p>
+  <% else %>
+    <% @post.comments.order('created_at DESC').each do |c| %>
+      <blockquote style='padding: 0px 10px;'>
+        <p><%= simple_format(c.content) %></p>
+        <footer>Написал <cite title="Source Title"><b><%= link_to c.user.name, profile_path(c.user) %></b></cite>  <%= c.created_at.strftime("%d.%m.%Y в %H:%M:%S") %>
+          <% if user_signed_in? %>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия <span class="caret"></span>  </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Изменить', edit_post_comment_path(@post, c) %></li>
+                <li><%= link_to "Удалить коммент.", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
+                <li role="separator" class="divider"></li>
+                  <li><%= link_to "Пользователь", edit_post_comment_path(@post, c) %></li>
+              </ul>
+            </div>
+          <% end %>
+        </footer>
+      </blockquote>
+    <% end %>
+  <% end %>
+</div>
+
