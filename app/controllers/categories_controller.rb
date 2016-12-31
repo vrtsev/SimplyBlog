@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, except: [:new, :create]
 
   def show
-    @posts = @category.posts.order(created_at: :desc)
+    redirect_to profile_path(category: params[:id], user: params[:user])
   end
 
   def new

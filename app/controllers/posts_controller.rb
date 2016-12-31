@@ -3,10 +3,18 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = current_user.posts.desc.paginate \
+    if params[:category]
+      @category = Category.find(params[:category])
+      @posts = @category.posts
+    else
+      @posts = current_user.posts
+    end
+    @posts = @posts.desc.paginate \
       :page => params[:page],
       :per_page => 10
-    @post_groups = @posts.group_by {|p| p.created_at.to_date}
+    @posts = @posts.tagged_with(params[:tag]) if params[:tag]
+    @post_groups = @posts
+      .group_by {|p| p.created_at.to_date}
     @pinned_posts = current_user.posts.where(pin: true).limit(2)
   end
 

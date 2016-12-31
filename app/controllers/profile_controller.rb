@@ -2,8 +2,14 @@ class ProfileController < ApplicationController
   before_action :set_user
 
   def index
-    redirect_to posts_path if @user == current_user
-    @posts = @user.posts.desc.paginate \
+    redirect_to posts_path(category: params[:category]) if @user == current_user
+    if params[:category]
+      @category = Category.find(params[:category])
+      @posts = @category.posts
+    else
+      @posts = @user.posts
+    end
+    @posts = @posts.desc.paginate \
       :page => params[:page],
       :per_page => 10
     @post_groups = @posts.group_by {|p| p.created_at.to_date}

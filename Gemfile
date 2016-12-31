@@ -14,6 +14,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'will_paginate'
+gem 'omniauth-vkontakte'
+gem 'omniauth-google-oauth2', '~> 0.4.1'
 
 group :development, :test do
   gem 'pry'
