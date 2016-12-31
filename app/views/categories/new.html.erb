@@ -9,22 +9,7 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-9">
-
-        <%= simple_form_for(@cat) do |f| %>
-
-          <div class="field" >
-            <h3>Заголовок</h3>
-            <%= f.input :name, label: false, class: "form-control", placeholder: "Заголовок" %>
-          </div>
-
-          <div class="field">
-            <h3>Описание</h3>
-            <%= f.input :description, as: :text, label: false, class: "form-control", placeholder: "Напишите, что будет содержать новая категория..." %>
-          </div>
-          <br />
-            <%= f.submit 'Сохранить', class: 'btn btn-success' %>
-        <% end %>
-
+        <%= render partial: 'form' %>
       </div>
       <div class="col-md-3"></div>
     </div>

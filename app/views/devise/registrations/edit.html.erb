@@ -1,49 +1,34 @@
 <title><%= "Профиль | SimplyBlog" %></title>
 
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2>Редактирование профиля</h2>
+    <hr>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-    <div class="panel panel-default">
-      <div class="panel-body">
+      <div><center>
+        <h3>Приватность</h3>
+        <%= f.input :visible, label: 'Сделать мою страницу публичной' %>
+      </center></div>
+      <hr>
+      <div class="form-inputs">
+        <%= f.input :name, required: true, autofocus: true, label: 'Ваше имя' %>
+        <%= f.input :email, required: true %>
 
-        <h2>Редактирование профиля</h2>
-        <hr>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
 
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-9">
-
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-              <%= f.error_notification %>
-
-              <div class="form-inputs">
-                <%= f.input :name, required: true, autofocus: true, label: 'Ваше имя' %>
-                <%= f.input :email, required: true %>
-
-                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-                <% end %>
-
-                <%= f.input :password, autocomplete: "off", hint: "оставьте поле пустым, если не хотите менять пароль", required: false %>
-                <%= f.input :password_confirmation, required: false %>
-                <%= f.input :current_password, hint: "необходим текущий пароль для подтверждения изменений", required: true %>
-                <%= f.input :photo, label: 'Ссылка на фото' %>
-              </div>
-
-              <div class="form-actions">
-                <%= f.button :submit, "Сохранить" %>
-              </div>
-            <% end %>
-
-
-          </div>
-          <div class="col-md-3"></div>
-        </div>
-
+        <%= f.input :password, label: 'Пароль', autocomplete: "off", hint: "оставьте поле пустым, если не хотите менять пароль", required: false %>
+        <%= f.input :password_confirmation, label: 'Подтверждение пароля', required: false %>
+        <%= f.input :photo, label: 'Ссылка на фото' %>
       </div>
-    </div>
 
+      <div class="form-actions">
+        <%= link_to "Назад", :back, class: 'btn btn-default' %>
+        <%= f.button :submit, "Сохранить", class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
-  <div class="col-md-3"></div>
 </div>

@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-2 col-sm-2">
         <center>
-          <h5 style='margin-bottom: 0;'><%= pin.created_at.strftime("%a") %></h5>
-          <h2 style='margin: 0;'><b><%= pin.created_at.strftime("%e") %></b></h2>
-          <h5 style='margin-top: 5px;'><%= pin.created_at.strftime("%H:%M") %></h5>
+          <h5 style='margin-bottom: 0;'><%= pin.updated_at.strftime("%a") %></h5>
+          <h2 style='margin: 0;'><b><%= pin.updated_at.strftime("%e") %></b></h2>
+          <h5 style='margin-top: 5px;'><%= pin.updated_at.strftime("%H:%M") %></h5>
         </center>
       </div>
 
@@ -19,13 +19,19 @@
           <span class="glyphicon glyphicon-comment" aria-hidden="true"> <%= pin.comments.length %></span>
           <span class="glyphicon glyphicon-tag" aria-hidden="true">
             <% pin.tags.limit(5).each do |t| %>
-              <%= link_to t.name, posts_path(tag: t.name) if t.present? %>;
+              <%= link_to t.name, profile_path(tag: t.name) if t.present? %>;
             <% end %>
           </span>
         </div>
       </div>
     </div>
   </div>
+<% end %>
+
+<% if @category.present? %>
+  <center>
+    <h2>Категория "<%= @category.name %>"</h2>
+  </center>
 <% end %>
 
 <% if @post_groups.any? %>
@@ -39,20 +45,20 @@
         <div class="row">
           <div class="col-md-2 col-sm-2">
             <center>
-              <h5 style='margin-bottom: 0;'><%= post.created_at.strftime("%a") %></h5>
-              <h2 style='margin: 0;'><b><%= post.created_at.strftime("%e") %></b></h2>
-              <h5 style='margin-top: 5px;'><%= post.created_at.strftime("%H:%M") %></h5>
+              <h5 style='margin-bottom: 0;'><%= post.updated_at.strftime("%a") %></h5>
+              <h2 style='margin: 0;'><b><%= post.updated_at.strftime("%e") %></b></h2>
+              <h5 style='margin-top: 5px;'><%= post.updated_at.strftime("%H:%M") %></h5>
             </center>
           </div>
 
           <div style="padding: 5px;" class="col-md-10 col-sm-10">
-            <b><%= link_to post.title, profile_post_path(@user, post), style: 'color: black;' %></b>
+            <b><%= link_to post.title, profile_post_path(@user, post), style: 'color: black;' %>  <%= '(Обновлено)' if post.updated_at > post.created_at %></b>
             <%= simple_format(post.content[0..140]) %>
             <div style='color: grey;'>
               <span class="glyphicon glyphicon-comment" aria-hidden="true"> <%= post.comments.length %></span> 
               <span class="glyphicon glyphicon-tag" aria-hidden="true">
                 <% post.tags.limit(5).each do |t| %>
-                  <%= link_to t.name, posts_path(tag: t.name) if t.present? %>;
+                  <%= link_to t.name, profile_path(tag: t.name) if t.present? %>;
                 <% end %>
               </span>
             </div>

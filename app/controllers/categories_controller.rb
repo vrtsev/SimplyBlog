@@ -1,12 +1,17 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, except: [:new, :create]
+  before_action :set_user_category, except: [:new, :create]
+  before_action :set_own_category, only: [:edit, :update, :destroy]
 
   def show
-    redirect_to profile_path(category: params[:id], user: params[:user])
+    if params[:user]
+      redirect_to profile_path(category: params[:id], user: params[:user])
+    else
+      redirect_to posts_path(category: params[:id])
+    end
   end
 
   def new
-    @cat = current_user.categories.new
+    @category = current_user.categories.new
   end
 
   def create
@@ -14,23 +19,25 @@ class CategoriesController < ApplicationController
     redirect_to category_path(@cat) if @cat.save
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    redirect_to posts_path if @category.update(category_params)
   end
 
   def destroy
+    redirect_to posts_path if @category.destroy
   end
 
   private
 
-  def set_category
-    if params[:user]
-      @user = User.find(params[:user])
-    else
-      @user = current_user
-    end
+  def set_own_category
+    @category = current_user.categories.find(params[:id])
+  end
+
+  def set_user_category
+    return unless params[:user]
+    @user = User.find(params[:user])
     @category = @user.categories.find(params[:id])
   end
 

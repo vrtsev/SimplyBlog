@@ -1,20 +1,13 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :check_params, only: :index
 
   def index
-    if params[:category]
-      @category = Category.find(params[:category])
-      @posts = @category.posts
-    else
-      @posts = current_user.posts
-    end
     @posts = @posts.desc.paginate \
-      :page => params[:page],
-      :per_page => 10
-    @posts = @posts.tagged_with(params[:tag]) if params[:tag]
-    @post_groups = @posts
-      .group_by {|p| p.created_at.to_date}
+      page:     params[:page],
+      per_page: 10
+    @post_groups = @posts.group_by { |p| p.updated_at.to_date }
     @pinned_posts = current_user.posts.where(pin: true).limit(2)
   end
 
@@ -43,6 +36,17 @@ class PostsController < ApplicationController
 
   def set_post
     @post = current_user.posts.find(params[:id])
+  end
+
+  def check_params
+    if params[:category]
+      @category = Category.find(params[:category])
+      @posts = @category.posts
+    elsif params[:tag]
+      @posts = current_user.posts.tagged_with(params[:tag])
+    else
+      @posts = current_user.posts
+    end
   end
 
   def post_params

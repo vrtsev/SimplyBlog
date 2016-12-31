@@ -16,7 +16,7 @@ class AuthorizationCreator
   end
 
   def find_user
-    return @authorization.user if @authorization.user.present? 
+    return @authorization.user if @authorization.user.present?
     existed_user || new_user
   end
 
@@ -30,7 +30,7 @@ class AuthorizationCreator
   end
 
   def user_by_generated_email
-    User.find_by_generated_email(@auth_object)
+    User.find_with_generated_email(@auth_object)
   end
 
   def new_user

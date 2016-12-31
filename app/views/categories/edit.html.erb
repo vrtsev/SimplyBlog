@@ -1,0 +1,18 @@
+<title>Настройка категории | SimplyBlog</title>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <h2>Настройка категории <%= link_to 'Удалить', category_path(@category), method: :delete, data: {confirm: 'Вы действительно хотите удалить данную категорию?'}, class: 'btn btn-danger' %></h2>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-9">
+        <%= render partial: 'form' %>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+  </div>
+</div>

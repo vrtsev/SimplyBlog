@@ -1,7 +1,7 @@
 FactoryGirl.define do
-	factory :comment do
-		sequence(:content) { |i| "Content SimplyBlog #{i}"}
- 		association(:user)
- 		association(:post)
+  factory :comment do
+    sequence(:content) { |i| "Content SimplyBlog #{i}" }
+    user
+    post
   end
 end
