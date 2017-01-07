@@ -50,6 +50,8 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.2.2)
     capybara (2.11.0)
       addressable
@@ -254,6 +256,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
   bootstrap-sass
+  bootstrap-wysihtml5-rails
   capybara
   devise
   factory_girl_rails
