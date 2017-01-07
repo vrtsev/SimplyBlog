@@ -1,0 +1,28 @@
+<div class='panel panel-default'>
+  <div class='panel-body'
+    <%= simple_form_for @new_post do |f| %>
+
+      <div class="field" >
+        <%= f.input :title, label: false, class: "form-control", placeholder: "Заголовок" %>
+      </div>
+
+      <div class="field">
+        <h3>Сообщение</h3>
+        <%= f.input :content, as: :text, input_html: {rows: 12}, label: false, class: "form-control", placeholder: "Сообщение..." %>
+      </div>
+      <div class="field">
+        <%= f.input :category_id, collection: current_user.categories, label: 'Выберите категорию', class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.input :tag_list, as: :string, label: false, class: "form-control", placeholder: "Введите теги через запятую" %>
+      </div>
+      <div class="field">
+        <%= f.check_box :pin, label: 'Закрепить?' %>
+        <b>Закрепить?</b>
+      </div>
+      <br />
+      <%= link_to 'Назад', :back, class: 'btn btn-default' %>
+      <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

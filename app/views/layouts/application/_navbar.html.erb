@@ -5,7 +5,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
-          <%= link_to "Создать запись", "#", class: "btn btn-info navbar-btn", id: "post_create", "data-toggle" => "modal", "data-target"=>"#newpost_modal" %>
+          <%= link_to "Создать запись", new_post_path, class: "btn btn-info navbar-btn", id: "post_create" %>
         <% end %>
       </ul>
 

@@ -15,6 +15,10 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
 
+  def new
+    @new_post = current_user.posts.new
+  end
+
   def edit; end
 
   def create
