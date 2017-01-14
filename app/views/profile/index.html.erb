@@ -13,7 +13,7 @@
       </div>
 
       <div style="padding: 5px;" class="col-md-10 col-sm-10">
-        <b><%= link_to pin.title, post_path(pin), style: 'color: black;' %></b>
+        <b><%= link_to pin.title, profile_post_path(@user, pin), style: 'color: black;' %></b>
         <%= simple_format(pin.content[0..140]) %>
         <div style='color: grey;'>
           <span class="glyphicon glyphicon-comment" aria-hidden="true"> <%= pin.comments.length %></span>

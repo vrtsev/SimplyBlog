@@ -1,38 +1,32 @@
 # SimplyBlog
 
-Сайт на heroku : https://vadim-simplyblog.herokuapp.com
-
-Данный блог является моей первой разработкой с использованием Ruby on Rails. На текущий момент блог полностью функционален, не имеет неисправностей.
-
-Ruby version: 2.3.0
-Rails : 5.0.1
-
-# Глобальное обновление 30.12.2016
-Спустя 2 месяца работы в компании решил пересмотреть код и всесторонне улучшить приложение, дабы использовать его в своих целях
+* Production link: https://vadim-simplyblog.herokuapp.com
+* Description: This is my first  Ruby on Rails project.
 * Ruby version: 2.3.1
-* Переделана и переосмыслена структура и архитектура приложения. Теперь каждый может зарегистрироваться и вести свой личный приватный\публичный блог
-* Рефакторинг контроллеров
-* Интегрирован OAuth для VK и Google
-* Код проверен гемом 'rubocop'
-* Добавлена возможность категоризировать записи
-* Добавлена возможность прикреплять к записям теги и искать записи по выбранному тегу
+* Rails version: 5.0.1
+* Author : Vadim Ryazantsev (Junior Full-Stack RoR developer)
+* Email: v.rtsev@gmail.com
+* LinkedIn: https://www.linkedin.com/in/vrtsev
 
-# Краткое описание базовых возможностей и функций:
-* Регистрация пользователей (Gem 'devise', отредактированы шаблоны гема под общую стилистику сайта)
-* Создание\редактирование\удаление постов
-* Возможность оставлять комментарии к постам
-* Минимальный дизайн сайта (Gem "Bootstrap")
-* Админ-панель
+# Major update 30.12.2016
+After 2 months of working in a company, I decided to revise the code, and comprehensively improve the application in order to use it for their own purposes
+* Ruby version: 2.3.1
+* Reworked and reconsidered the structure and architecture of the application. Now everyone can create and create their own private \ public blog
+* Controllers refactoring
+* Integrated OAuth for VK and Google
+* Using 'rubocop' now for analyzing code
+* Implement categories
+* Implement tags and search by tags
 
-# Планы на дальнейшую разработку
-Данное приложение было улучшено и модернизировано с целью дать возможность пользователям использовать сайт в конкретно назначеных целях. На данный момент, функционал приложения минимален, но полностью работоспособен. В планах по разработке:
-* Реализовать возможность фолловинга пользователей
-* Написать тесты на приложение
+# Short description of functionality:
+* User-registration system (Gem 'devise', also changed basic devise templates to equal general site-design)
+* Ability to write comments for any post
+* Minimal site design (Gem "Bootstrap")
+* Admin-panel
 
-#Contribution
-Любые предлодложения, пул реквесты, советы только приветствуются. Для связи со мной Вы можете использовать контактные данные, которые я оставил ниже
+# Development plans
+* Add following-system
+* Write RSpec test for controllers, OAuth, and other main functionality
 
-Автор : Vadim Ryazantsev (Junior Full-Stack RoR developer)
-
-v.rtsev@gmail.com
-https://www.linkedin.com/in/vrtsev
+# Contribution
+Feel free to propose any pull-requests, and contributions. You can contact with me by email
