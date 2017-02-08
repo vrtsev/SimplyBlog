@@ -18,13 +18,20 @@ gem 'omniauth-vkontakte'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'bootstrap-wysihtml5-rails'
 
-group :development, :test do
+group :development do
   gem 'pry'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'rails-controller-testing'
-  gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'rubocop'
+  gem 'rubrowser'
+end
+
+group :test do
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 group :development do
