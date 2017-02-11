@@ -19,7 +19,7 @@ gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'bootstrap-wysihtml5-rails'
 
 group :development do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'rubocop'
   gem 'rubrowser'
 end
