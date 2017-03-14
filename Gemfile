@@ -18,25 +18,25 @@ gem 'omniauth-vkontakte'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'bootstrap-wysihtml5-rails'
 
-group :development do
-  gem 'pry-rails'
-  gem 'rubocop'
-  gem 'rubrowser'
+group :test do
+  gem 'cucumber'
+  gem 'cucumber-rails', :require => false
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
-group :test do
-  gem 'rails-controller-testing'
+group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'database_cleaner'
-  gem 'poltergeist'
-  gem 'capybara'
+  gem 'annotate'
 end
 
 group :development do
+  gem 'rubrowser'
+  gem 'rubocop'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'spring'

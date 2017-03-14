@@ -7,3 +7,6 @@ class Authorization < ApplicationRecord
       uid: auth.uid.to_s
   end
 end
+
+# class Authorization < SimplyRecord::Model
+# end
