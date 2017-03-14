@@ -4,3 +4,6 @@ class Comment < ApplicationRecord
 
   validates :content, length: { minimum: 3}, allow_nil: false
 end
+
+# class Comment < SimplyRecord::Model
+# end

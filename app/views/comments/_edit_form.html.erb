@@ -2,17 +2,17 @@
 
 <%= form_for [@post, @comment] do |f| %>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="field">
-   		<%= f.text_area :content, class: "form-control", placeholder: "Новый комментарий...", size: "90x4" %>
-  	</div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="field">
+     		<%= f.text_area :content, class: "form-control", placeholder: "Новый комментарий...", size: "90x4" %>
+    	</div>
+    </div>
+    <div class="panel-footer"><div class="actions">
+      <%= f.submit "Изменить", class: 'btn btn-warning' %>
+      <p class='btn btn-default'><%= link_to 'Отмена', post_path(@post) %></p>
+    </div></div>
   </div>
-  <div class="panel-footer"><div class="actions">
-    <%= button_to "Изменить", { action: "update" }, remote: true, form: { "data-type" => "json" }, class: 'btn btn-warning' %>
-    <p class='btn btn-default'><%= link_to 'Отмена', post_path(@post) %></p>
-  </div></div>
-</div>
 
 <% end %>
 

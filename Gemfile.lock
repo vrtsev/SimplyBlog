@@ -42,6 +42,9 @@ GEM
       activerecord (>= 4.0)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.1.4)
     ast (2.3.0)
     autoprefixer-rails (6.6.0)
@@ -164,6 +167,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     public_suffix (2.0.4)
     puma (3.6.2)
     rack (2.0.1)
@@ -282,6 +287,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
+  annotate
   bootstrap-sass
   bootstrap-wysihtml5-rails
   capybara
@@ -297,7 +303,7 @@ DEPENDENCIES
   omniauth-vkontakte
   pg (~> 0.18)
   poltergeist
-  pry
+  pry-rails
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing

@@ -2,3 +2,6 @@ class Category < ApplicationRecord
   belongs_to :user
   has_many   :posts
 end
+
+# class Category < SimplyRecord::Model
+# end
