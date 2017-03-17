@@ -28,5 +28,6 @@ FactoryGirl.define do
     password '123456'
     role 0
     visible true
+    last_sign_in_at Date.new(2017)
   end
 end

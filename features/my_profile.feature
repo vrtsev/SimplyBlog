@@ -3,7 +3,7 @@ Feature: Display profile of current user
   As current user
   I want to see own posts, categories and login status
 
-  Scenario: Display correct login status
+  Scenario: Display current user page
     Given User 'Админ'
     And User posts
     And User categories

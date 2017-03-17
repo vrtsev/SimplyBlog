@@ -11,8 +11,11 @@ Given(/^Post creation form/) do
 end
 
 And(/^Filled data in form fields/) do
-  fill_in('post[title]', :with => 'Test title')
+  fill_in('post[title]', :with => 'My Test title')
   fill_in('post[content]', :with => 'Some text in content field..')
+  fill_in('post[tag_list]', :with => 'first, second, third ')
+  # select "option_name_here", :from => "organizationSelect"
+  # check 'post[pin]'
 end
 
 When(/^I click button for post creation/) do
@@ -24,6 +27,6 @@ Then(/^Site should redirect to created post/) do
 end
 
 And(/^Page should contain filled content/) do
-  expect(page).to have_content 'Test title'
+  expect(page).to have_content 'My Test title'
   expect(page).to have_content 'Some text in content field..'
 end

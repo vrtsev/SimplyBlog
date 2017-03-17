@@ -1,7 +1,7 @@
 # == Schema Information
-
+#
 # Table name: users
-
+#
 #  id                     :integer          not null, primary key
 #  name                   :string           default(""), not null
 #  email                  :string           default(""), not null

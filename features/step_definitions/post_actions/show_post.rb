@@ -10,8 +10,8 @@ When(/^I click on choosen post title/) do
     When I click button for post creation
   }
   visit posts_path
-  expect(page).to have_content 'Test title'
-  click_link('Test title')
+  expect(page).to have_content 'My Test title'
+  click_link('My Test title')
 end
 
 Then(/^Site should redirect to choosen post/) do
@@ -19,6 +19,6 @@ Then(/^Site should redirect to choosen post/) do
 end
 
 And(/^Page should contain content/) do
-  expect(page).to have_content 'Test title'
+  expect(page).to have_content 'My Test title'
   expect(page).to have_content 'Some text in content field..'
 end

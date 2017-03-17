@@ -1,7 +1,9 @@
+[![Code Climate](https://codeclimate.com/github/vrtsev/SimplyBlog/badges/gpa.svg)](https://codeclimate.com/github/vrtsev/SimplyBlog) [![Test Coverage](https://codeclimate.com/github/vrtsev/SimplyBlog/badges/coverage.svg)](https://codeclimate.com/github/vrtsev/SimplyBlog/coverage)
+
 # SimplyBlog
 
 * Production link: https://vadim-simplyblog.herokuapp.com
-* Description: This is my first  Ruby on Rails project.
+* Description: This is my first Ruby on Rails project.
 * Ruby version: 2.3.1
 * Rails version: 5.0.1
 * Author : Vadim Ryazantsev (Junior Full-Stack RoR developer)
@@ -9,7 +11,7 @@
 * LinkedIn: https://www.linkedin.com/in/vrtsev
 
 # Major update 30.12.2016
-After 2 months of working in a company, I decided to revise the code, and comprehensively improve the application in order to use it for their own purposes
+After 2 months of working in a company, I decided to rewrite the code, and comprehensively improve the application in order to use it for their own purposes
 * Ruby version: 2.3.1
 * Reworked and reconsidered the structure and architecture of the application. Now everyone can create and create their own private \ public blog
 * Controllers refactoring
@@ -25,7 +27,7 @@ After 2 months of working in a company, I decided to revise the code, and compre
 * Admin-panel
 
 # Development plans
-* Add following-system
+* Integrate own ORM and replace ActiveRecord (In order to gain metaprogramming experience)
 * Write RSpec test for controllers, OAuth, and other main functionality
 
 # Contribution

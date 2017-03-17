@@ -20,9 +20,11 @@ Feature: Perform CRUD actions on categories
     And Fill up fields for category
     And Press save button
     Then Site should redirect to profile page
+    And page should contain edited category
 
   Scenario: Delete category
-    Given Category page
+    Given Category page for delete
     When I click category settings button
     And Press delete button
     Then Site should redirect to profile page
+    And page should not contain deleted category

@@ -9,14 +9,20 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+
+# View gems
 gem 'bootstrap-sass'
-gem 'devise'
 gem 'simple_form'
-gem 'acts-as-taggable-on', '~> 4.0'
-gem 'will_paginate'
+gem 'bootstrap-wysihtml5-rails'
+
+# Authentification and OAuth
 gem 'omniauth-vkontakte'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
-gem 'bootstrap-wysihtml5-rails'
+gem 'devise'
+
+# Other functionality
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'will_paginate'
 
 group :test do
   gem 'cucumber'

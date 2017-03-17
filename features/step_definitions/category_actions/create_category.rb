@@ -16,7 +16,7 @@ And(/^Press create category button/) do
 end
 
 Then(/^Site should redirect to category page/) do
-  expect(page).to have_current_path(category_path(Category.last))
+  expect(page).to have_current_path(posts_path(category: Category.last.id))
 end
 
 And(/^Page should contain category name/) do
