@@ -1,0 +1,32 @@
+<div class="users-index">
+  <div class="page-panel panel panel-default row">
+
+    <center><h1>Новые пользователи на сайте</h1></center>
+    <hr>
+
+    <% @users.each do |user| %>
+      <div class="col-md-3" >
+
+        <%= link_to profile_path(user) do %>
+          <div class="panel panel-default">
+            <div class="image">
+              <% if user.photo.present? %>
+                <%= image_tag user.photo %>
+              <% else %>
+                <img src='https://vk.com/images/camera_200.png'/>
+              <% end %>
+            </div>
+
+            <center class="panel-footer">
+              <b><%= link_to user.name, profile_path(user) %></b>
+            </center>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
+
+    <center><%= will_paginate @users %></center>
+
+  </div>
+</div>
