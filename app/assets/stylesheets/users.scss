@@ -1,0 +1,18 @@
+.users-index {
+  .page-panel {
+    padding: 5%;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .image {
+    width: 200px;
+    height: 145px;
+    overflow: hidden;
+    img {
+      width: 145px;
+    }
+  }
+}

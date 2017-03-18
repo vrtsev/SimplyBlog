@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>О сайте | SimplyBlog</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render partial: 'layouts/application/navbar' %>
+
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-2'></div>
+        <div class='col-md-8'>
+          <%= yield %>
+        </div>
+        <div class='col-md-2'></div>
+      </div>
+    </div>
+
+    <hr/>
+    <p class="text-muted; text-center"><b>SimplyBlog</b>, 2016. All rights reserved. Created by <b>Vadim</b> on Ruby on Rails </p><br />
+  </body>
+</html>
+
+
+
+
+
+
+
