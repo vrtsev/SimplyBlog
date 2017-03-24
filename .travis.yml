@@ -6,12 +6,16 @@ addons:
   code_climate:
     repo_token: 1b47f8789d0cb6f6e639474ad9ff50f9b9b94e9ca8676dfab9ddff6c3d95baef
 
+services:
+  - postgresql
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database blog_test;' -U postgres
 
-services:
-  - postgresql
+script:
+  - bundle exec rubocop
+  - bundle exec rake
 
 after_success:
   - bundle exec codeclimate-test-reporter

@@ -15,6 +15,7 @@ AllCops:
     - 'spec/spec_helper.rb'
     - 'features/support/*'
     - 'lib/simply_record/*'
+    - 'vendor/**/*'
 
 
 Style/FrozenStringLiteralComment:
