@@ -7,6 +7,7 @@
 /config/database.yml
 /db/development.sqlite3
 /db/test.sqlite3
+/coverage/*
 
 # Ignore bundler config.
 /.bundle

@@ -1,6 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/vrtsev/SimplyBlog/badges/gpa.svg)](https://codeclimate.com/github/vrtsev/SimplyBlog) [![Test Coverage](https://codeclimate.com/github/vrtsev/SimplyBlog/badges/coverage.svg)](https://codeclimate.com/github/vrtsev/SimplyBlog/coverage)
-
-# SimplyBlog
+# SimplyBlog [![Build Status](https://travis-ci.org/vrtsev/SimplyBlog.svg?branch=master)](https://travis-ci.org/vrtsev/SimplyBlog) [![Code Climate](https://codeclimate.com/github/vrtsev/SimplyBlog/badges/gpa.svg)](https://codeclimate.com/github/vrtsev/SimplyBlog) [![Test Coverage](https://codeclimate.com/github/vrtsev/SimplyBlog/badges/coverage.svg)](https://codeclimate.com/github/vrtsev/SimplyBlog/coverage)
 
 * Production link: https://vadim-simplyblog.herokuapp.com
 * Description: This is my first Ruby on Rails project.

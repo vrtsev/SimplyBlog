@@ -23,6 +23,8 @@
 
 FactoryGirl.define do
   factory :user do
+    skip_create
+
     name 'User'
     sequence(:email) { |i| "email#{i}@mail.com" }
     password '123456'

@@ -14,6 +14,8 @@
 
 FactoryGirl.define do
   factory :authorization do
+    skip_create
+
     provider 'MyString'
     uid 'MyString'
     user

@@ -12,6 +12,8 @@
 
 FactoryGirl.define do
   factory :category do
+    skip_create
+
     sequence(:name) { |i| "User category # #{i}" }
     user
   end

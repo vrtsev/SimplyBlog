@@ -65,7 +65,7 @@ class SimplyRecord::Model
 
     private
 
-    def get_data(response = :handle_response, query, _block)
+    def get_data(response = :handle_response, query, &block)
       data = send_request(query)
       return yield wrap_data(response, data) if block_given?
       wrap_data(response, data)

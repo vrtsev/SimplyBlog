@@ -12,6 +12,8 @@
 
 FactoryGirl.define do
   factory :comment do
+    skip_create
+
     sequence(:content) { |i| "Content SimplyBlog #{i}" }
     user
     post

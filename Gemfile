@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -31,6 +31,8 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 group :development, :test do
