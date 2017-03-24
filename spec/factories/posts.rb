@@ -17,8 +17,8 @@ FactoryGirl.define do
     sequence(:title) { |i| "New post # #{i}" }
     content 'My content'
     pin false
-    created_at { "#{Time.now}" }
-    updated_at { "#{Time.now}" }
+    created_at { Time.now.utc.to_s }
+    updated_at { Time.now.utc.to_s }
     user
 
     trait :same_tag do

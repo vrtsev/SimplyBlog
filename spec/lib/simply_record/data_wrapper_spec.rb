@@ -5,14 +5,14 @@ describe SimplyRecord::DataWrapper do
   let(:obj_content)  { 'Пример текста в посте' }
   let(:example_db_data) do
     {
-      'id'=>obj_id,
-      'title'=>obj_title,
-      'content'=>obj_content,
-      'pin'=>'f',
-      'user_id'=>'4',
-      'category_id'=>nil,
-      'created_at'=>'2017-01-02 10:51:49.897369',
-      'updated_at'=>'2017-01-07 10:10:30.520733'
+      'id' => obj_id,
+      'title' => obj_title,
+      'content' => obj_content,
+      'pin' => 'f',
+      'user_id' => '4',
+      'category_id' => nil,
+      'created_at' => '2017-01-02 10:51:49.897369',
+      'updated_at' => '2017-01-07 10:10:30.520733'
     }
   end
   let(:data) do
@@ -22,7 +22,7 @@ describe SimplyRecord::DataWrapper do
       to_a: [
         example_db_data,
         example_db_data,
-        example_db_data,
+        example_db_data
       ]
   end
 

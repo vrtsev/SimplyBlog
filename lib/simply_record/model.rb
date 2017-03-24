@@ -14,7 +14,7 @@ class SimplyRecord::Model
         @new_object.class.send(:attr_accessor, f)
         @new_object.instance_variable_set(:"@#{f}", nil)
       end
-      return @new_object
+      @new_object
     end
 
     def all
@@ -38,10 +38,9 @@ class SimplyRecord::Model
     end
 
     def create(data)
-      current_time = Time.now.to_s
-      timestamps = {created_at: current_time, updated_at: current_time}
+      timestamps = {created_at: Time.now.utc.to_s, updated_at: Time.now.utc.to_s}
       keys = (data.keys + timestamps.keys).join(', ')
-      values = (data.values + timestamps.values).map {|w| "\'#{w}\'"}.join(', ')
+      values = (data.values + timestamps.values).map { |w| "\'#{w}\'" }.join(', ')
 
       get_data("INSERT INTO #{table_name} (#{keys}) VALUES (#{values}) RETURNING id;") do |result|
         id = result.first['id']
@@ -50,8 +49,8 @@ class SimplyRecord::Model
     end
 
     def update(id, data)
-      user_data = data.merge(updated_at: Time.now.to_s)
-      user_data = user_data.map {|o| "#{o.first}='#{o.last}'" }.join(', ')
+      user_data = data.merge(updated_at: Time.now.utc.to_s)
+      user_data = user_data.map { |o| "#{o.first}='#{o.last}'" }.join(', ')
 
       get_data("UPDATE #{table_name} SET #{user_data} WHERE id=#{id} RETURNING id") do |result|
         id = result.first['id']
@@ -61,14 +60,12 @@ class SimplyRecord::Model
 
     def destroy(id)
       # TODO : Make sure that .destroy should return deleted object instance
-      get_data("DELETE FROM #{table_name} WHERE id=#{id}") do |result|
-        return puts "Record ##{id} has been successfully destroyed" if result.result_status
-      end
+      get_data("DELETE FROM #{table_name} WHERE id=#{id}")
     end
 
     private
 
-    def get_data(response=:handle_response, query, &block)
+    def get_data(response = :handle_response, query, _block)
       data = send_request(query)
       return yield wrap_data(response, data) if block_given?
       wrap_data(response, data)
@@ -85,7 +82,7 @@ class SimplyRecord::Model
       when :single
         SimplyRecord::DataWrapper.new(self).single_object(data)
       when :handle_response
-        return data
+        data
       end
     end
 

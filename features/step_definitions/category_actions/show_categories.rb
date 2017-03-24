@@ -9,6 +9,6 @@ When(/^I visit profile page/) do
 end
 
 Then(/^page should contain categories/) do
-  expect(page).to have_content("User category # 1")
-  expect(page).to have_content("User category # 2")
+  expect(page).to have_content('User category # 1')
+  expect(page).to have_content('User category # 2')
 end

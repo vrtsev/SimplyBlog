@@ -20,7 +20,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 
-
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -34,16 +33,16 @@ class User < ApplicationRecord
   validates :encrypted_password, presence: true
 
   def self.create_for_oauth(auth)
-    if auth.provider == 'vkontakte'
-      @photo = auth.extra.raw_info.photo_200_orig
-    else
-      @photo = auth.info.image
-    end
     create \
       name: auth.info.first_name,
       email: auth.info.email || "#{auth.uid}@#{auth.provider}",
       password: Devise.friendly_token[0, 10],
-      photo: @photo
+      photo: get_photo(auth)
+  end
+
+  def get_photo(auth)
+    return auth.info.image unless auth.provider == 'vkontakte'
+    auth.extra.raw_info.photo_200_orig
   end
 
   def self.find_with_generated_email(auth)

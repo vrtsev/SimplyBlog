@@ -4,11 +4,11 @@ Given(/^List of user posts/) do
 end
 
 When(/^I click on choosen post title/) do
-  steps %Q{
+  steps %(
     Given Post creation form
     And Filled data in form fields
     When I click button for post creation
-  }
+  )
   visit posts_path
   expect(page).to have_content 'My Test title'
   click_link('My Test title')

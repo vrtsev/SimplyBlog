@@ -7,14 +7,14 @@ When(/^I visit registration page/) do
 end
 
 And(/^I fill registration fields/) do
-  fill_in('user[name]', :with => 'Админ')
-  fill_in('user[email]', :with => 'admin@example.com')
-  fill_in('user[password]', :with => 'password')
-  fill_in('user[password_confirmation]', :with => 'password')
+  fill_in('user[name]', with: 'Админ')
+  fill_in('user[email]', with: 'admin@example.com')
+  fill_in('user[password]', with: 'password')
+  fill_in('user[password_confirmation]', with: 'password')
 end
 
 And(/^Press register button/) do
-  click_button "Продолжить"
+  click_button 'Продолжить'
 end
 
 Then(/^Site should redirect me to my new profile page/) do

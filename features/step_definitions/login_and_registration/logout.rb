@@ -5,7 +5,7 @@ end
 
 When(/^I click logout link/) do
   visit posts_path
-  click_link "Выйти"
+  click_link 'Выйти'
 end
 
 Then(/^Site should redirect me to landing page/) do

@@ -3,7 +3,7 @@ end
 
 When(/^I visit login page/) do
   visit root_path
-  click_link "Войти"
+  click_link 'Войти'
 end
 
 And(/^Login to site/) do

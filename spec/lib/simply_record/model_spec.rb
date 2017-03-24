@@ -9,7 +9,7 @@ describe SimplyRecord::Model do
       single_object: received_single_object
   end
 
-  let(:all_fields)             { ["id", "title", "content", "pin", "user_id", "category_id", "created_at", "updated_at"] }
+  let(:all_fields)             { %w(id title content pin user_id category_id created_at updated_at) }
   let(:received_collection)    { [first_post, second_post] }
   let(:received_single_object) { first_post }
   let(:first_post)             { create :post, title: 'First post' }
@@ -20,7 +20,7 @@ describe SimplyRecord::Model do
     instance_double \
       'PG::Result',
       fields: all_fields,
-      first: {'id'=>'1'},
+      first: { 'id' => '1' },
       result_status: 1
   end
   let(:data) do
@@ -36,7 +36,6 @@ describe SimplyRecord::Model do
     let(:custom_title)   { 'First post' }
     let(:custom_content) { 'My content' }
 
-
     describe '#update' do
       it 'returns instance object' do
         expect(object.update(data)).to be_a(Post)
@@ -48,7 +47,7 @@ describe SimplyRecord::Model do
       end
 
       it 'changes timestamps' do
-        expect(object.update(data).updated_at).to eq(Time.now.to_s)
+        expect(object.update(data).updated_at).to eq(Time.now.utc.to_s)
       end
     end
 
@@ -72,8 +71,6 @@ describe SimplyRecord::Model do
         expect(subject.new.content).to be_nil
       end
     end
-
-
 
     describe '.all' do
       it 'returns array' do
@@ -120,7 +117,7 @@ describe SimplyRecord::Model do
     end
 
     describe '.where' do
-      let(:query)       {'pin=f'}
+      let(:query)       { 'pin=f' }
       let(:first_post)  { create :post, title: 'First post', pin: 'f' }
       let(:second_post) { create :post, title: 'Second post', pin: 'f' }
 
@@ -134,7 +131,7 @@ describe SimplyRecord::Model do
       end
     end
 
-    let(:first_post)     { create :post, title: custom_title, content: custom_content }
+    let(:first_post) { create :post, title: custom_title, content: custom_content }
     describe '.create' do
       it 'returns instance object' do
         expect(subject.create(data)).to be_a(Post)
@@ -146,8 +143,8 @@ describe SimplyRecord::Model do
       end
 
       it 'sets timestamps' do
-        expect(subject.create(data).created_at).to eq(Time.now.to_s)
-        expect(subject.create(data).updated_at).to eq(Time.now.to_s)
+        expect(subject.create(data).created_at).to eq(Time.now.utc.to_s)
+        expect(subject.create(data).updated_at).to eq(Time.now.utc.to_s)
       end
     end
 
@@ -163,7 +160,7 @@ describe SimplyRecord::Model do
       end
 
       it 'changes timestamps' do
-        expect(subject.update(id, data).updated_at).to eq(Time.now.to_s)
+        expect(subject.update(id, data).updated_at).to eq(Time.now.utc.to_s)
       end
     end
 

@@ -43,14 +43,15 @@ class PostsController < ApplicationController
   end
 
   def check_params
-    if params[:category]
-      @category = Category.find(params[:category])
-      @posts = @category.posts
-    elsif params[:tag]
-      @posts = current_user.posts.tagged_with(params[:tag])
-    else
-      @posts = current_user.posts
-    end
+    category_vars
+    return @posts = current_user.posts unless params[:tag]
+    @posts = current_user.posts.tagged_with(params[:tag])
+  end
+
+  def category_vars
+    return unless params[:category]
+    @category = Category.find(params[:category])
+    @posts = @category.posts
   end
 
   def post_params

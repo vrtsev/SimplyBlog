@@ -6,12 +6,9 @@ And(/^few comments on David post/) do
   create :comment, content: 'Thank you', user: david, post: david_post
 end
 
-
 Then(/^i should not have ability to manage comments on David page/) do
-  # Check comments existance
   expect(page).to have_content 'Wow!'
   expect(page).to have_content 'Thank you'
-  # expect(page).to have_no_selector(:link_or_button, 'Действия')
 end
 
 And(/^have ability to manage my comments/) do

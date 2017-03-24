@@ -16,19 +16,19 @@ end
 
 Then(/^I should see comment editing form/) do
   expect(page).to have_content('Изменить комментарий')
-  within(:css, "form.edit_comment") do
+  within(:css, 'form.edit_comment') do
     expect(find_field('comment[content]').value).to have_content('My comment')
   end
 end
 
 When(/^I fill up comment edit form/) do
-  within(:css, "form.edit_comment") do
+  within(:css, 'form.edit_comment') do
     fill_in 'comment[content]', with: 'My edited comment'
   end
 end
 
 And(/^press edit button/) do
-  within(:css, "form.edit_comment") do
+  within(:css, 'form.edit_comment') do
     click_on 'Изменить'
   end
 end

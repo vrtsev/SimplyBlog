@@ -14,6 +14,6 @@ class SimplyRecord::DataWrapper
   def single_object(data)
     @new_object = @model.new
     data.first.each { |k, v| @new_object.instance_variable_set(:"@#{k}", v) }
-    return @new_object
+    @new_object
   end
 end

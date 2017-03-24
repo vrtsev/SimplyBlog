@@ -17,7 +17,7 @@ When(/^I change filled content/) do
 end
 
 And(/^Press button for save edited post/) do
-  click_button "Сохранить"
+  click_button 'Сохранить'
 end
 
 Then(/^Site should redirect to edited post/) do

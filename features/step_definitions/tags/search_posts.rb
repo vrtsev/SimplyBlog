@@ -5,7 +5,7 @@ end
 
 And(/^1 post with another tag/) do
   admin = User.find_by name: 'Admin'
-  create :post, :another_tag, title: 'Another post',user: admin
+  create :post, :another_tag, title: 'Another post', user: admin
 end
 
 When(/^I click another tag/) do
