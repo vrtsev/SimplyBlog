@@ -1,38 +1,41 @@
-Feature: Display profiles of other users
-  In order to know that correct layout rendered
-  As a logged user
-  I want to visit other profiles
+Feature: user profiles
+  In order to store all my posts and other data
+  As registered user
+  I want to manage my profile page
 
-  Scenario: Display content of other profile
-    Given I as user Admin wih posts and categories
-    And user David wih posts and categories
-    When i visit David profile
-    Then i should see David name
-    And i should see David posts
-    And i should see David categories
+  Background:
+    Given following users:
+      | name | email         | visible | role |
+      | John | john@blog.net | true    | 0    |
+    And i sign in as 'john@blog.net'
 
-  Scenario: Display correct view for other profiles
-    Given I as user Admin wih posts and categories
-    And user David wih posts and categories
-    When i visit David profile
-    Then page should not have link for new category
+  Scenario: display warning page if profile is private
+    Given following users:
+      | name | email         | visible | role |
+      | Kate | kate@blog.net | false   | 0    |
+    When i'm going to visit Kate's profile
+    Then site should redirect to /422
+    And page should contain header 'Это действие недоступно'
+    And page should contain text 'предпочел скрыть свою страницу'
+    And page should contain footer 'Ошибка 422. Доступ запрещен'
 
-  Scenario: Display correct view for posts of other users
-    Given I as user Admin wih posts and categories
-    And user David wih posts and categories
-    When i visit post page of David profile
-    Then i should not have ability to manage David post
+  Scenario: display user profile settings
+    When i visit profile edit page
+    Then page should contain header 'Редактирование профиля'
+    And page should contain field 'user[visible]'
+    And page should contain checkbox 'Сделать мою страницу публичной'
+    And page should include user profile fields
+    And page should contain button 'Сохранить'
 
-  Scenario: Display correct view for post comments of other users
-    Given I as user Admin wih posts and categories
-    And user David wih posts and categories
-    And few comments on David post
-    When i visit post page of David profile
-    Then i should not have ability to manage comments on David page
-    And have ability to manage my comments
-
-  Scenario: Display correct view for category of other users
-    Given I as user Admin wih posts and categories
-    And user David wih posts and categories
-    When i visit category page on David profile
-    Then i should not have ability to manage David category
+  Scenario: visiting profile of other user
+    Given following users:
+      | name | email         | visible | role |
+      | Dave | dave@blog.net | true    | 0    |
+    And Dave's post with data:
+      | title         | content                     |
+      | One more post | Today is very shiny weather |
+      | Good moments  | I love this beautiful blog  |
+    When i'm on Dave's profile
+    Then page should not contain link 'Новая категория'
+    And page should contain Daves post 'One more post'
+    And page should contain Daves post 'Good moments'

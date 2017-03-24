@@ -33,7 +33,7 @@
             <div class="btn-group">
               <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия <span class="caret"></span>  </button>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Изменить', edit_post_comment_path(@post, c) %></li>
+                <li><%= link_to 'Изменить коммент.', edit_post_comment_path(@post, c) %></li>
                 <li><%= link_to "Удалить коммент.", post_comment_path(@post,c.id), method: :delete, data: { confirm: "Вы уверены?" }, class: "text-warning" %></li>
                 <li role="separator" class="divider"></li>
                   <li><%= link_to "Пользователь", edit_post_comment_path(@post, c) %></li>
