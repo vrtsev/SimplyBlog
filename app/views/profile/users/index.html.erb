@@ -7,7 +7,7 @@
     <% @users.each do |user| %>
       <div class="col-md-3" >
 
-        <%= link_to profile_path(user) do %>
+        <%= link_to user_posts_path(user) do %>
           <div class="panel panel-default">
             <div class="image">
               <% if user.photo.present? %>
@@ -18,7 +18,7 @@
             </div>
 
             <center class="panel-footer">
-              <b><%= link_to user.name, profile_path(user) %></b>
+              <b><%= link_to user.name, user_posts_path(user) %></b>
             </center>
           </div>
         <% end %>

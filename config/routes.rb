@@ -3,11 +3,18 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: "omniauth_callbacks" }
 
-  resources :categories
+  # namespace :profile do
+    resources :users, only: :index, module: 'profile' do
+      resources :categories, only: :show
+      resources :posts, only: [:index, :show] do
+        resources :comments, except: :index
+      end
+    end
+  # end
+
+  # resources :users, only: :index
+  resources :categories, except: :index
   resources :posts do
-    resources :comments
+    resources :comments, except: :index
   end
-  resources :users, only: :index
-  get '/id:user', to: 'profile#index', as: 'profile'
-  get '/id:user/posts/:id', to: 'profile#show', as: 'profile_post'
 end

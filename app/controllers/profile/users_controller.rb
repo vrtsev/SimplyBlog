@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Profile::UsersController < ApplicationController
   layout 'users'
 
   def index

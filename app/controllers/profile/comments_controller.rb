@@ -1,28 +1,29 @@
-class CommentsController < ApplicationController
+class Profile::CommentsController < ProfileController
+  before_action :find_user, :find_post
+
   def create
-    @post = find_post
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
 
     if @comment.save
-      flash[:success] = 'Ваш комментарий был опубликован'
+      flash[:success] = 'Ваш комментарий к записи был опубликован'
+      redirect_to user_post_path(@user, @post)
     else
       flash[:failure] = 'Ошибка. Проверьте правильность заполнения формы'
+      render :new
     end
-    redirect_to post_path(@post)
   end
 
   def edit
-    @post = find_post
     @comment = @post.comments.find(params[:id])
   end
 
   def update
-    @post = find_post
     @comment = @post.comments.find(params[:id])
+
     if @comment.update(comment_params)
-      flash[:success] = 'Ваш комментарий был обновлен'
-      redirect_to post_path(@post)
+      flash[:success] = 'Ваш комментарий к записи был обновлен'
+      redirect_to user_post_path(@user, @post)
     else
       flash[:failure] = 'Ошибка. Проверьте правильность заполнения формы'
       render :edit
@@ -30,22 +31,24 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = find_post
     @comment = @post.comments.find(params[:id])
-    return unless @comment.user == current_user
 
     if @comment.destroy
-      flash[:success] = 'Ваш комментарий был удален'
+      flash[:success] = 'Ваш комментарий к записи был удален'
     else
-      flash[:failure] = 'Произошла ошибка. Повторите попытку'
+      flash[:failure] = 'Ошибка. Повторите попытку'
     end
-    redirect_to post_path(@post)
+    redirect_to user_post_path(@user, @post)
   end
 
   private
 
+  def find_user
+    @user = User.find(params[:user_id])
+  end
+
   def find_post
-    @post = current_user.posts.find(params[:post_id])
+    @post = @user.posts.find(params[:post_id])
   end
 
   def comment_params

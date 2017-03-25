@@ -1,57 +1,65 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :check_params, only: :index
 
   def index
-    @posts = @posts.desc.paginate \
+    @posts = current_user.posts.no_pin.desc.paginate \
       page:     params[:page],
       per_page: 10
     @post_groups = @posts.group_by { |p| p.updated_at.to_date }
-    @pinned_posts = current_user.posts.where(pin: true).limit(2)
+    @pinned_posts = current_user.posts.where(pin: true)
   end
 
   def show
-    @comment = Comment.new
+    @post = find_post
   end
 
   def new
     @post = current_user.posts.new
   end
 
-  def edit; end
-
   def create
     @post = current_user.posts.new(post_params)
-    render :new unless @post.save
-    redirect_to @post
+
+    if @post.save
+      flash[:success] = 'Ваша запись была опубликована'
+      redirect_to post_path(@post)
+    else
+      flash[:failure] = 'Ошибка. Проверьте правильность заполнения формы'
+      render :new
+    end
+  end
+
+  def edit
+    @post = find_post
   end
 
   def update
-    render :edit unless @post.update(post_params)
-    redirect_to @post
+    @post = find_post
+
+    if @post.update(post_params)
+      flash[:success] = 'Ваша запись была опубликована'
+      redirect_to post_path(@post)
+    else
+      flash[:failure] = 'Ошибка. Проверьте правильность заполнения формы'
+      render :new
+    end
   end
 
   def destroy
-    redirect_to posts_url if @post.destroy
+    @post = find_post
+
+    if @post.destroy
+      flash[:success] = 'Ваша запись была удалена'
+    else
+      flash[:failure] = 'Ошибка. Повторите попытку'
+    end
+    redirect_to posts_path
   end
 
   private
 
-  def set_post
+  def find_post
     @post = current_user.posts.find(params[:id])
-  end
-
-  def check_params
-    category_vars
-    return @posts = current_user.posts unless params[:tag]
-    @posts = current_user.posts.tagged_with(params[:tag])
-  end
-
-  def category_vars
-    return unless params[:category]
-    @category = Category.find(params[:category])
-    @posts = @category.posts
   end
 
   def post_params

@@ -31,7 +31,7 @@
 <% if @category.present? %>
   <center>
     <h2>Категория "<%= @category.name %>"</h2>
-    <%= link_to 'Настройка', edit_category_path(@category) %>
+    <%= link_to 'Настройка', edit_category_path(@category) if @category.user == current_user %>
   </center>
 <% end %>
 

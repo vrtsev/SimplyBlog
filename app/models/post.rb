@@ -13,6 +13,7 @@
 #
 
 class Post < ApplicationRecord
+  scope :no_pin, -> { where(pin: false) }
   scope :desc, -> { order(updated_at: :desc) }
 
   acts_as_taggable

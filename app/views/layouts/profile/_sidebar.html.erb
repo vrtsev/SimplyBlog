@@ -1,0 +1,27 @@
+<div id="sidebar" class="col-md-12">
+
+  <div class='panel panel-default' style='padding: 2%;'>
+    <% if @user.photo.present? %>
+      <img src='<%= @user.photo %>' style='width: 100%'/>
+    <% else %>
+      <img src='https://vk.com/images/camera_200.png' style='width: 100%'/>
+    <% end %>
+    <div style='text-align: center;'>
+      <span style='font-size: x-large;'><b><%= @user.name %></b></span><br>
+      <span style='color: grey;'>Был в сети <%= @user.last_sign_in_at.strftime('%d.%m.%y') %></span>
+    </div>
+  </div>
+
+  <% if @user.categories.any? %>
+    <h4 style='text-align: center;'><b>Категории пользователя</b></h4>
+      <ul class="list-group">
+      <%= link_to user_posts_path(@user), class: 'list-group-item' do %>
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> <b>Все записи</b>
+      <% end %>
+      <% @user.categories.each do |category| %>
+        <%= link_to category.name, user_category_path(@user, category), class: 'list-group-item' %>
+      <% end %>
+    </ul>
+  <% end %>
+
+</div>

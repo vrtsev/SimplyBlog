@@ -2,7 +2,7 @@
 
   <% if params[:controller] == 'profile' %>
     <div class='panel panel-default' style='padding: 2%;'>
-      <% if user.photo.present? %>
+      <% if @user.photo.present? %>
         <img src='<%= user.photo %>' style='width: 100%'/>
       <% else %>
         <img src='https://vk.com/images/camera_200.png' style='width: 100%'/>
@@ -23,7 +23,7 @@
       </ul>
     <% end %>
   <% elsif user_signed_in? %>
-    <%= render partial: 'layouts/application/user_block', locals: {user: current_user} %>
+    <%= render partial: 'layouts/application/user_block', locals: {user: @user} %>
     <ul class="list-group">
       <a href="/categories/new" class="list-group-item"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Новая категория</a>
       <%= link_to 'Все записи', posts_path, class: 'list-group-item' %>

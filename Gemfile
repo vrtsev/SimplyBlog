@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'bootstrap-wysihtml5-rails'
+gem 'slim-rails'
 
 # Authentification and OAuth
 gem 'omniauth-vkontakte'
